@@ -27,17 +27,15 @@ body {
 
 .app-header::before {
   content: "";
-  position: fixed;
-  top: 0;
+  position: absolute; /* 🔥 замість fixed */
+  top: calc(-1 * max(env(safe-area-inset-top), 20px));
   left: 0;
   width: 100%;
-  height: 60px; /* 🔥 підганяємо */
+  height: max(env(safe-area-inset-top), 20px);
   background: #1B1A22;
-  z-index: 999;
 }
 
 
-/* контейнер */
 .app-header {
   position: fixed;
   top: 0;
@@ -45,10 +43,13 @@ body {
   width: 100%;
   background: #1B1A22;
   z-index: 1000;
-  padding: 0 16px;
+
+  padding: env(safe-area-inset-top) 16px 0;
+
   transition: transform 0.3s ease;
   box-shadow: 0 10px 20px #282630;
-  padding: env(safe-area-inset-top) 16px 0; 
+
+  position: fixed;
 }
 
 /* верх */
