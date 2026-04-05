@@ -153,7 +153,7 @@
       "price": 560,
       "weight": "580 г",
       "desc": "½ Філадельфія з лососем, \n½ Філадельфія з тунецум, \n½ Філадельфія з креветкою, \n½ Філадельфія з вугрем",
-      "img": "product/Sets/set_fujn.jpg"
+      "img": "product/Sets/set_fujn.webp"
     },
     {
       "id": "set_na_dvoh",
@@ -161,7 +161,7 @@
       "price": 650,
       "weight": "670 г",
       "desc": "Філадельфія з лососем, Філадельфія боніто, макі з вугрем",
-      "img": "product/Sets/set_na_dvoh.jpg"
+      "img": "product/Sets/set_na_dvoh.webp"
     },
     {
       "id": "set_kali",
@@ -169,7 +169,7 @@
       "price": 950,
       "weight": "1080 г",
       "desc": "Каліфорнія з лососем, Каліфорнія з тунцем, Каліфорнія з вугрем, Каліфорнія з креветкою",
-      "img": "product/Sets/set_kali.jpg"
+      "img": "product/Sets/set_kali.webp"
     },
     {
       "id": "set_family",
@@ -177,7 +177,7 @@
       "price": 1150,
       "weight": "1240 г",
       "desc": "Філадельфія з лососем, Філадельфія боніто, Філадельфія з креветкою, Чедер, макі з лососем",
-      "img": "product/Sets/set_family.jpg"
+      "img": "product/Sets/set_family.webp"
     },
     {
       "id": "set_fila",
@@ -185,7 +185,7 @@
       "price": 1390,
       "weight": "1450 г",
       "desc": "Філадельфія з лососем, Філадельфія з тунцем, Філадельфія з креветкою, Філадельфія з вугрем, Філадельфія з гребінцем",
-      "img": "product/Sets/set_fila.jpg"
+      "img": "product/Sets/set_fila.webp"
     },
     {
       "id": "set_maki",
@@ -193,7 +193,7 @@
       "price": 550,
       "weight": "600 г",
       "desc": "Макі з лососем, Макі з тунцем, Макі з креветкою, Макі з вугрем, Макі з огірком, Макі з авокадо",
-      "img": "product/Sets/set_maki.jpg"
+      "img": "product/Sets/set_maki.webpg"
     }
 
   ]
