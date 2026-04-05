@@ -16,13 +16,13 @@ body {
 .page-main .menu {
   padding-top: 14px;
   margin-top: 150px;
-  margin-bottom: 16px; /* header + tabs + search */
+  margin-bottom: 16px; 
 }
 
 /* для обраного (без пошуку) */
 .page-favorites .menu {
-  margin-top: 164px; /* тільки header + tabs */
-  padding-bottom: 120px; /* 🔥 ОЦЕ */
+  margin-top: 164px; 
+  padding-bottom: 120px; 
 }
 
 
@@ -42,14 +42,12 @@ body {
 
 /* верх */
 .top-bar {
-  /* transition: transform 0.3s ease;*/
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 8px;
 }
 
-/* 🔥 важливо */
 .sticky-part {
   position: sticky;
   top: 0;
@@ -121,11 +119,10 @@ body {
   background: #AE0000;
 }
 
-
 /* пошук */
 .search {
   display: flex;
-  align-items: center;   /* 🔥 вирівнює по центру */
+  align-items: center;   
   gap: 8px;
   height: 40px;
   background: #3B3847;
@@ -162,10 +159,6 @@ body {
   font-weight: 600;
 }
 
-
-
-
-
 /* картка */
 .card {
   border-radius: 20px;
@@ -193,7 +186,7 @@ body {
   background: #F7F4F4;
   padding: 16px;
 
-  flex-grow: 1; /* 🔥 ключ */
+  flex-grow: 1; 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -225,7 +218,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 14px; /* мінімальний відступ */
+  gap: 14px; 
   margin-top: 18px;
 }
 
@@ -234,8 +227,8 @@ body {
   font-size: 14px;
   color: #6E6E6E;
 
-  flex: 1; /* займає весь простір */
-  min-width: 0; /* 🔥 дуже важливо */
+  flex: 1;
+  min-width: 0; 
   
 }
 
@@ -245,8 +238,7 @@ body {
 }
 
 
-/* 🔥 МАЛЕНЬКА КАРТКА (як на дизайні) */
-/* базова картка */
+/* 🔥 МАЛЕНЬКА КАРТКА */
 .card-small {
   display: flex;
   border-radius: 12px;
@@ -272,7 +264,7 @@ body {
   background: #F7F4F4;
 
   display: flex;
-  flex-direction: row; /* 🔥 ОСЬ ЦЬОГО НЕ ВИСТАЧАЛО */
+  flex-direction: row; 
   justify-content: space-between;
   align-items: stretch;
   gap: 10px;
@@ -428,23 +420,19 @@ body {
 
 /*Кнопка замовити*/
 .order-btn {
-  display: flex;              /* 🔥 головне */
-  align-items: center;        /* по вертикалі */
-  justify-content: center;    /* по центру */
-
-  gap: 8px;                   /* відступ між текстом і іконкою */
-
-  background: #AE0000;        /* червона кнопка */
+  display: flex;              
+  align-items: center;        
+  justify-content: center;    
+  gap: 8px;                   
+  background: #AE0000;        
   color: white;
-
   padding: 14px;
   border-radius: 12px;
-
   text-decoration: none;
   font-size: 16px;
   font-weight: 600;
   width: 100%;
-  white-space: nowrap;        /* щоб не переносилось */
+  white-space: nowrap;        
 }
 
 /* іконка */
@@ -527,7 +515,7 @@ body {
 /* Кнопка "Очистити"*/
 .favorites-top {
   position: fixed;
-  top: 88px; /* під header */
+  top: 88px; 
   left: 0;
   width: 100%;
 
@@ -570,7 +558,7 @@ body {
   width: 120px;
   height: 120px;
   margin: 0 auto 16px;
-  background: transparent; /* потім вставиш картинку */
+  background: transparent; 
 }
 
 .go-menu-btn {
@@ -583,9 +571,6 @@ body {
   text-decoration: none;
   font-weight: 600;
 }
-
-
-
 
 
 /*Пошук*/
@@ -683,7 +668,6 @@ body {
 
 /* КОНТЕНТ ПІД НИМ */
 .search-page-body #search-results {
-   /* header + input */
   height: auto;
   display: flex;
   flex-direction: column;
@@ -816,10 +800,10 @@ body.no-scroll {
 
 
 .delivery-card .extra-title {
-  margin-top: 14px;   /* 🔥 відступ зверху */
+  margin-top: 14px;   
   margin-bottom: 6px;
 
-  font-weight: 600;   /* 🔥 жирніше */
+  font-weight: 600;   
   color: #3C3C3D;
 }
 
@@ -934,7 +918,6 @@ body.no-scroll {
     position: sticky;
     top: 120px;
 
-    /* 🔥 КРИТИЧНО */
     left: auto;
     transform: none;
     max-width: none;

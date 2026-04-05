@@ -4,23 +4,25 @@ document.addEventListener("DOMContentLoaded", async () => {
   const res = await fetch("data.json");
   const data = await res.json();
 
-  const allItems = [...data.rolls, ...data.sets];
+  const allItems = [...data.rolls, ...data.sets, ...data.salats];
 
   let items;
   const isFavoritesPage = window.location.pathname.includes("favorites");
   const isSetsPage = window.location.pathname.includes("sets");
+  const isSalatsPage = window.location.pathname.includes("other");
 
   if (isFavoritesPage) {
-    items = allItems;
-  } else if (isSetsPage) {
-    items = data.sets;
-  } else {
-    items = data.rolls;
-  }
+  items = allItems;
+} else if (isSetsPage) {
+  items = data.sets;
+} else if (isSalatsPage) {
+  items = data.salats; 
+} else {
+  items = data.rolls;
+}
 
   let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-  // 🔥 ДОДАНО
   const emptyBlock = document.getElementById("empty-favorites");
   const summary = document.querySelector(".favorites-summary");
   const top = document.querySelector(".favorites-top");
@@ -45,7 +47,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 }
 
-  // 🔥 ДОДАНО
   function toggleFavoritesState() {
     if (!isFavoritesPage) return;
 
@@ -134,7 +135,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const card = btn.closest("[data-id]");
     const id = card.dataset.id;
 
-    // ✅ стартовий стан
     if (favorites.includes(id)) {
       btn.classList.add("active");
     } else {
@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 }
 
-  // 🔥 КНОПКА ОЧИСТИТИ
+  // КНОПКА ОЧИСТИТИ
   const clearBtn = document.getElementById("clear-favorites");
   if (clearBtn) {
     clearBtn.addEventListener("click", () => {
@@ -175,7 +175,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (container) container.innerHTML = "";
 
       updateTotal();
-      toggleFavoritesState(); // 🔥 ДОДАНО
+      toggleFavoritesState(); 
     });
   }
 
@@ -186,9 +186,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   updateTotal();
-  toggleFavoritesState(); // 🔥 ДОДАНО
+  toggleFavoritesState(); 
 
-  // --- 🔍 ПОШУК ---
+  // --- ПОШУК ---
   const searchInput = document.getElementById("searchInput");
   const searchContainer = document.getElementById("search-results");
 
@@ -221,7 +221,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       renderCards(filtered, searchContainer);
     });
   }
-  /*Лічильник товарів в обраному*/
+
+/*Лічильник товарів в обраному*/
 function attachCounterHandlers() {
   document.querySelectorAll(".card-small").forEach(card => {
     const minus = card.querySelector(".minus");
@@ -243,14 +244,13 @@ function attachCounterHandlers() {
       count++;
       countEl.textContent = count;
       priceEl.textContent = (basePrice * count) + " ₴";
-      updateTotal(); // 🔥 ДОДАТИ
+      updateTotal(); 
     };
 
     minus.onclick = () => {
       count--;
 
       if (count <= 0) {
-        // 🔥 видаляємо з обраного
         favorites = favorites.filter(f => f !== id);
         localStorage.setItem("favorites", JSON.stringify(favorites));
 
@@ -262,7 +262,7 @@ function attachCounterHandlers() {
 
       countEl.textContent = count;
       priceEl.textContent = (basePrice * count) + " ₴";
-      updateTotal(); // 🔥 ДОДАТИ
+      updateTotal(); 
     };
   });
 }
@@ -294,16 +294,11 @@ const clearBtn = document.getElementById("clear-favorites");
 
 if (clearBtn) {
   clearBtn.addEventListener("click", () => {
-    // 🔥 очищаємо localStorage
     localStorage.removeItem("favorites");
-
-    // 🔥 очищаємо список
     const container = document.getElementById("rolls-container");
     if (container) {
       container.innerHTML = "";
     }
-
-    // 🔥 обнуляємо суму
     const totalEl = document.getElementById("total-price");
     if (totalEl) {
       totalEl.textContent = "0 ₴";

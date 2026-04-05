@@ -182,7 +182,7 @@
     {
       "id": "set_fila",
       "name": "Сет “Філадельфія”",
-      "price": 1390,
+      "price": 1400,
       "weight": "1450 г",
       "desc": "Філадельфія з лососем, Філадельфія з тунцем, Філадельфія з креветкою, Філадельфія з вугрем, Філадельфія з гребінцем",
       "img": "product/Sets/set_fila.webp"
@@ -196,5 +196,14 @@
       "img": "product/Sets/set_maki.webp"
     }
 
-  ]
+  ],
+  "salats": [
+    {
+      "id": "salat_chuka",
+      "name": "Салат Чука з горіховим соусом",
+      "price": 200,
+      "weight": "130 г",
+      "desc": "Чука (100 г), горіховий соус (30 г)",
+      "img": "product/Other/salat_chuka.webp"
+    }]
 }
