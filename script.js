@@ -65,111 +65,105 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   function renderCards(list, targetContainer) {
-    targetContainer.innerHTML = "";
+  targetContainer.innerHTML = "";
 
-    list.forEach(item => {
-      if (isFavoritesPage && !favorites.includes(item.id)) return;
+  list.forEach(item => {
+    if (isFavoritesPage && !favorites.includes(item.id)) return;
 
-      const card = document.createElement("div");
-      card.dataset.id = item.id;
-
-      if (isFavoritesPage) {
-    card.className = "card-small";
-    card.innerHTML = `
-  <img src="${item.img}" class="card-small-img">
-
-  <div class="card-small-content">
-
-  <!-- ліва частина -->
-  <div class="info">
-    <h3 class="title">${item.name}</h3>
-    <span class="weight">${item.weight}</span>
-    <span class="price">${item.price} ₴</span>
-  </div>
-
-  <!-- права частина -->
-  <div class="actions">
-
-    <button class="like-btn">
-      <img class="heart-icon">
-    </button>
-
-    <div class="counter">
-      <button class="minus">−</button>
-      <span class="count">1</span>
-      <button class="plus">+</button>
-    </div>
-
-  </div>
-
-</div>
-`;
-      } else {
-        card.className = "card";
-        card.innerHTML = `
-          <div class="card-img-wrapper">
-            <img src="${item.img}" class="card-img" alt="${item.name}">
-
-            <button class="like-btn" type="button">
-              <img class="heart-icon" alt="favorite">
-            </button>
-          </div>
-
-          <div class="card-content">
-            <div class="top-row">
-              <h3>${item.name}</h3>
-              <span class="price">${item.price} ₴</span>
-            </div>
-
-            <div class="bottom-row">
-              <p>${item.desc}</p>
-              <span class="weight">${item.weight}</span>
-            </div>
-          </div>
-        `;
-      }
-
-      targetContainer.appendChild(card);
-    });
-
-    attachLikeHandlers();
-    attachCounterHandlers(); // 🔥 ОЦЕ ДОДАЙ
-    
-  }
-
-  function attachLikeHandlers() {
-    document.querySelectorAll(".like-btn").forEach(btn => {
-      const card = btn.closest("[data-id]");
-      const id = card.dataset.id;
-      const icon = btn.querySelector(".heart-icon");
-
-      icon.src = favorites.includes(id)
-        ? "icons/heart-filled.png"
-        : "icons/heart-empty.png";
-
-      btn.onclick = () => {
-  if (favorites.includes(id)) {
-    favorites = favorites.filter(f => f !== id);
-    icon.src = "icons/heart-empty.png";
+    const card = document.createElement("div");
+    card.dataset.id = item.id;
 
     if (isFavoritesPage) {
-      card.remove();
+      card.className = "card-small";
+      card.innerHTML = `
+        <img src="${item.img}" class="card-small-img">
+
+        <div class="card-small-content">
+
+          <div class="info">
+            <h3 class="title">${item.name}</h3>
+            <span class="weight">${item.weight}</span>
+            <span class="price">${item.price} ₴</span>
+          </div>
+
+          <div class="actions">
+            <div class="counter">
+              <button class="minus">−</button>
+              <span class="count">1</span>
+              <button class="plus">+</button>
+            </div>
+
+          </div>
+
+        </div>
+      `;
+    } else {
+      card.className = "card";
+      card.innerHTML = `
+        <div class="card-img-wrapper">
+          <img src="${item.img}" class="card-img" alt="${item.name}">
+
+          <button class="like-btn" type="button">
+            <img class="heart-icon" src="icons/shop.png" alt="cart">
+          </button>
+        </div>
+
+        <div class="card-content">
+          <div class="top-row">
+            <h3>${item.name}</h3>
+            <span class="price">${item.price} ₴</span>
+          </div>
+
+          <div class="bottom-row">
+            <p>${item.desc}</p>
+            <span class="weight">${item.weight}</span>
+          </div>
+        </div>
+      `;
     }
-  } else {
-    favorites.push(id);
-    icon.src = "icons/heart-filled.png";
 
-    triggerFavAnimation(); // 🔥 ДОДАТИ СЮДИ
-  }
+    targetContainer.appendChild(card);
+  });
 
-  localStorage.setItem("favorites", JSON.stringify(favorites));
+  attachLikeHandlers();
+  attachCounterHandlers();
+}
 
-  updateFavCount(); // 🔥 ДОДАТИ
-  updateTotal();
-  toggleFavoritesState();
-};
-    });
-  }
+  function attachLikeHandlers() {
+  document.querySelectorAll(".like-btn").forEach(btn => {
+    const card = btn.closest("[data-id]");
+    const id = card.dataset.id;
+
+    // ✅ стартовий стан
+    if (favorites.includes(id)) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+
+    btn.onclick = () => {
+      if (favorites.includes(id)) {
+        favorites = favorites.filter(f => f !== id);
+        btn.classList.remove("active");
+
+        if (isFavoritesPage) {
+          card.remove();
+        }
+      } else {
+        favorites.push(id);
+        btn.classList.add("active");
+
+        triggerFavAnimation();
+      }
+
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+
+      updateFavCount();
+      updateTotal();
+      toggleFavoritesState();
+    };
+  });
+}
 
   // 🔥 КНОПКА ОЧИСТИТИ
   const clearBtn = document.getElementById("clear-favorites");
