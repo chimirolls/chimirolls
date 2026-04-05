@@ -15,7 +15,7 @@ body {
 /* для головних сторінок (є пошук) */
 .page-main .menu {
   padding-top: 14px;
-  margin-top: 150px;
+  margin-top: calc(150px + env(safe-area-inset-top));
   margin-bottom: 16px; /* header + tabs + search */
 }
 
