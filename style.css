@@ -5,7 +5,6 @@ body {
   color: #F7F4F4;
   
 }
-
 * {
   box-sizing: border-box;
 }
@@ -16,7 +15,7 @@ body {
 /* для головних сторінок (є пошук) */
 .page-main .menu {
   padding-top: 14px;
-  margin-top: calc(150px + env(safe-area-inset-top));
+  margin-top: 150px;
   margin-bottom: 16px; /* header + tabs + search */
 }
 
@@ -27,30 +26,18 @@ body {
 }
 
 
-
+/* контейнер */
 .app-header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-
   background: #1B1A22;
   z-index: 1000;
-
   padding: 0 16px;
-
   transition: transform 0.3s ease;
   box-shadow: 0 10px 20px #282630;
-}
-
-.app-header::before {
-  content: "";
-  position: absolute;
-  top: -80px; /* 🔥 висота як була в body */
-  left: 0;
-  width: 100%;
-  height: 80px;
-  background: #1B1A22;
+  padding: env(safe-area-inset-top) 16px 0; 
 }
 
 /* верх */
