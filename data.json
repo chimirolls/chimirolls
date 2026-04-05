@@ -6,7 +6,7 @@
       "price": 290,
       "weight": "290 г",
       "desc": "Лосось, сир, авокадо, огірок",
-      "img": "product/Rolls/fila_losos.jpg"
+      "img": "product/Rolls/fila_losos.webp"
     },
     {
       "id": "fila_tuna",
@@ -14,7 +14,7 @@
       "price": 290,
       "weight": "290 г",
       "desc": "Тунець, сир, манго, огірок",
-      "img": "product/Rolls/fila_tuna.jpg"
+      "img": "product/Rolls/fila_tuna.webp"
     },
     {
       "id": "fila_grebin",
@@ -22,7 +22,7 @@
       "price": 300,
       "weight": "290 г",
       "desc": "Гребінець, сир, японський майонез, огірок, ікра Масага, авокадо",
-      "img": "product/Rolls/fila_grebin.jpg"
+      "img": "product/Rolls/fila_grebin.webp"
     },
     {
       "id": "fila_vugor",
@@ -30,7 +30,7 @@
       "price": 310,
       "weight": "290 г",
       "desc": "Вугор, сир, огірок, авокадо, кунжут, ікра Масага, соус Унагі",
-      "img": "product/Rolls/fila_vugor.jpg"
+      "img": "product/Rolls/fila_vugor.webp"
     },
     {
       "id": "fila_shrimp",
@@ -38,7 +38,7 @@
       "price": 290,
       "weight": "290 г",
       "desc": "Креветка, сир, ікра Масага, огірок, манго",
-      "img": "product/Rolls/fila_shrimp.jpg"
+      "img": "product/Rolls/fila_shrimp.webp"
     },
     {
       "id": "fila_bonito",
@@ -46,7 +46,7 @@
       "price": 270,
       "weight": "280 г",
       "desc": "Смажений лосось, сир, ікра Масага, огірок, авокадо, стружка тунця",
-      "img": "product/Rolls/fila_bonito.jpg"
+      "img": "product/Rolls/fila_bonito.webp"
     },
     {
       "id": "kali_losos",
@@ -54,7 +54,7 @@
       "price": 250,
       "weight": "270 г",
       "desc": "Лосось, авокадо, огірок, ікра Масага",
-      "img": "product/Rolls/kali_losos.jpg"
+      "img": "product/Rolls/kali_losos.webp"
     },
     {
       "id": "kali_vugor",
@@ -62,7 +62,7 @@
       "price": 270,
       "weight": "270 г",
       "desc": "Вугор, японський майонез, огірок, авокадо, кунжут",
-      "img": "product/Rolls/kali_vugor.jpg"
+      "img": "product/Rolls/kali_vugor.webp"
     },
     {
       "id": "kali_shrimp",
@@ -70,7 +70,7 @@
       "price": 250,
       "weight": "270 г",
       "desc": "Креветка, авокадо, огірок, ікра Масага, манго",
-      "img": "product/Rolls/kali_shrimp.jpg"
+      "img": "product/Rolls/kali_shrimp.webp"
     },
     {
       "id": "kali_tuna",
@@ -78,7 +78,7 @@
       "price": 250,
       "weight": "270 г",
       "desc": "Тунець, авокадо, огірок, манго, японський майонез, кунжут",
-      "img": "product/Rolls/kali_tuna.jpg"
+      "img": "product/Rolls/kali_tuna.webp"
     },
     {
       "id": "fila_cheder",
@@ -86,7 +86,7 @@
       "price": 240,
       "weight": "280 г",
       "desc": "Мідії, сир, краб, сир Чедер, кунжут",
-      "img": "product/Rolls/fila_cheder.jpg"
+      "img": "product/Rolls/fila_cheder.webp"
     },
     {
       "id": "futomaki",
@@ -94,7 +94,7 @@
       "price": 380,
       "weight": "370 г",
       "desc": "Лосось, тунець, креветка, вугор, манго",
-      "img": "product/Rolls/futomaki.jpg"
+      "img": "product/Rolls/futomaki.webp"
     },
     {
       "id": "maki_ququmber",
@@ -102,7 +102,7 @@
       "price": 70,
       "weight": "100 г",
       "desc": "Огірок",
-      "img": "product/Maki/maki_ququmber.jpg"
+      "img": "product/Maki/maki_ququmber.webp"
     },
     {
       "id": "maki_avokado",
@@ -110,7 +110,7 @@
       "price": 90,
       "weight": "100 г",
       "desc": "Авокадо",
-      "img": "product/Maki/maki_avokado.jpg"
+      "img": "product/Maki/maki_avokado.webp"
     },
     {
       "id": "maki_losos",
@@ -118,7 +118,7 @@
       "price": 110,
       "weight": "100 г",
       "desc": "Лосось",
-      "img": "product/Maki/maki_losos.jpg"
+      "img": "product/Maki/maki_losos.webp"
     },
     {
       "id": "maki_tuna",
@@ -126,7 +126,7 @@
       "price": 110,
       "weight": "100 г",
       "desc": "Тунець",
-      "img": "product/Maki/maki_tuna.jpg"
+      "img": "product/Maki/maki_tuna.webp"
     },
     {
       "id": "maki_shrimp",
@@ -134,7 +134,7 @@
       "price": 110,
       "weight": "100 г",
       "desc": "Креветка",
-      "img": "product/Maki/maki_shrimp.jpg"
+      "img": "product/Maki/maki_shrimp.webp"
     },
     {
       "id": "maki_vugor",
@@ -142,7 +142,7 @@
       "price": 140,
       "weight": "100 г",
       "desc": "Вугор",
-      "img": "product/Maki/maki_vugor.jpg"
+      "img": "product/Maki/maki_vugor.webp"
     }
   ],
   
@@ -193,7 +193,7 @@
       "price": 550,
       "weight": "600 г",
       "desc": "Макі з лососем, Макі з тунцем, Макі з креветкою, Макі з вугрем, Макі з огірком, Макі з авокадо",
-      "img": "product/Sets/set_maki.webpg"
+      "img": "product/Sets/set_maki.webp"
     }
 
   ]
