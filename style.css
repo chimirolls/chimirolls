@@ -15,7 +15,7 @@ body {
 /* для головних сторінок (є пошук) */
 .page-main .menu {
   padding-top: 14px;
-  margin-top: 146px;
+  margin-top: 154px;
   margin-bottom: 16px; /* header + tabs + search */
 }
 
@@ -765,8 +765,7 @@ body.no-scroll {
 /*Доставка*/
 .delivery-page {
   margin-top: 114px;
-  margin-bottom: 114px;
-  padding: 0 16px 20px;
+  padding: 0 16px 120px;
 }
 
 /* заголовок */
