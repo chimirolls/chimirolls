@@ -126,9 +126,9 @@ body {
   display: flex;
   align-items: center;   /* 🔥 вирівнює по центру */
   gap: 8px;
-
+  height: 40px;
   background: #3B3847;
-  border-radius: 20px;
+  border-radius: 24px;
   padding: 10px 14px;
   margin-bottom: 12px; 
 }
@@ -765,6 +765,7 @@ body.no-scroll {
 /*Доставка*/
 .delivery-page {
   margin-top: 114px;
+  margin-bottom: 114px;
   padding: 0 16px 20px;
 }
 
