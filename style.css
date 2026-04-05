@@ -37,6 +37,7 @@ body {
   padding: 0 16px;
   transition: transform 0.3s ease;
   box-shadow: 0 10px 20px #282630;
+  padding: env(safe-area-inset-top) 16px 0; 
 }
 
 /* верх */
