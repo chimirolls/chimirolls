@@ -1,0 +1,350 @@
+document.addEventListener("DOMContentLoaded", async () => {
+  const container = document.getElementById("rolls-container");
+
+  const res = await fetch("data.json");
+  const data = await res.json();
+
+  const allItems = [...data.rolls, ...data.sets];
+
+  let items;
+  const isFavoritesPage = window.location.pathname.includes("favorites");
+  const isSetsPage = window.location.pathname.includes("sets");
+
+  if (isFavoritesPage) {
+    items = allItems;
+  } else if (isSetsPage) {
+    items = data.sets;
+  } else {
+    items = data.rolls;
+  }
+
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  // 🔥 ДОДАНО
+  const emptyBlock = document.getElementById("empty-favorites");
+  const summary = document.querySelector(".favorites-summary");
+  const top = document.querySelector(".favorites-top");
+
+  function updateTotal() {
+  if (!isFavoritesPage) return;
+
+  let total = 0;
+
+  document.querySelectorAll(".card-small").forEach(card => {
+    const count = Number(card.querySelector(".count").textContent);
+    const item = allItems.find(i => i.id === card.dataset.id);
+
+    if (item) {
+      total += Number(item.price) * count;
+    }
+  });
+
+  const totalEl = document.getElementById("total-price");
+  if (totalEl) {
+    totalEl.textContent = total + " ₴";
+  }
+}
+
+  // 🔥 ДОДАНО
+  function toggleFavoritesState() {
+    if (!isFavoritesPage) return;
+
+    if (favorites.length === 0) {
+      if (container) container.style.display = "none";
+      if (emptyBlock) emptyBlock.style.display = "block";
+
+      if (summary) summary.style.display = "none";
+      if (top) top.style.display = "none";
+    } else {
+      if (container) container.style.display = "block";
+      if (emptyBlock) emptyBlock.style.display = "none";
+
+      if (summary) summary.style.display = "block";
+      if (top) top.style.display = "flex";
+    }
+  }
+
+  function renderCards(list, targetContainer) {
+    targetContainer.innerHTML = "";
+
+    list.forEach(item => {
+      if (isFavoritesPage && !favorites.includes(item.id)) return;
+
+      const card = document.createElement("div");
+      card.dataset.id = item.id;
+
+      if (isFavoritesPage) {
+    card.className = "card-small";
+    card.innerHTML = `
+  <img src="${item.img}" class="card-small-img">
+
+  <div class="card-small-content">
+
+  <!-- ліва частина -->
+  <div class="info">
+    <h3 class="title">${item.name}</h3>
+    <span class="weight">${item.weight}</span>
+    <span class="price">${item.price} ₴</span>
+  </div>
+
+  <!-- права частина -->
+  <div class="actions">
+
+    <button class="like-btn">
+      <img class="heart-icon">
+    </button>
+
+    <div class="counter">
+      <button class="minus">−</button>
+      <span class="count">1</span>
+      <button class="plus">+</button>
+    </div>
+
+  </div>
+
+</div>
+`;
+      } else {
+        card.className = "card";
+        card.innerHTML = `
+          <div class="card-img-wrapper">
+            <img src="${item.img}" class="card-img" alt="${item.name}">
+
+            <button class="like-btn" type="button">
+              <img class="heart-icon" alt="favorite">
+            </button>
+          </div>
+
+          <div class="card-content">
+            <div class="top-row">
+              <h3>${item.name}</h3>
+              <span class="price">${item.price} ₴</span>
+            </div>
+
+            <div class="bottom-row">
+              <p>${item.desc}</p>
+              <span class="weight">${item.weight}</span>
+            </div>
+          </div>
+        `;
+      }
+
+      targetContainer.appendChild(card);
+    });
+
+    attachLikeHandlers();
+    attachCounterHandlers(); // 🔥 ОЦЕ ДОДАЙ
+    
+  }
+
+  function attachLikeHandlers() {
+    document.querySelectorAll(".like-btn").forEach(btn => {
+      const card = btn.closest("[data-id]");
+      const id = card.dataset.id;
+      const icon = btn.querySelector(".heart-icon");
+
+      icon.src = favorites.includes(id)
+        ? "icons/heart-filled.png"
+        : "icons/heart-empty.png";
+
+      btn.onclick = () => {
+  if (favorites.includes(id)) {
+    favorites = favorites.filter(f => f !== id);
+    icon.src = "icons/heart-empty.png";
+
+    if (isFavoritesPage) {
+      card.remove();
+    }
+  } else {
+    favorites.push(id);
+    icon.src = "icons/heart-filled.png";
+
+    triggerFavAnimation(); // 🔥 ДОДАТИ СЮДИ
+  }
+
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+
+  updateFavCount(); // 🔥 ДОДАТИ
+  updateTotal();
+  toggleFavoritesState();
+};
+    });
+  }
+
+  // 🔥 КНОПКА ОЧИСТИТИ
+  const clearBtn = document.getElementById("clear-favorites");
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      favorites = [];
+      localStorage.removeItem("favorites");
+
+      if (container) container.innerHTML = "";
+
+      updateTotal();
+      toggleFavoritesState(); // 🔥 ДОДАНО
+    });
+  }
+
+  // --- РЕНДЕР ---
+  if (container) {
+    renderCards(items, container);
+    updateTotal();
+  }
+
+  updateTotal();
+  toggleFavoritesState(); // 🔥 ДОДАНО
+
+  // --- 🔍 ПОШУК ---
+  const searchInput = document.getElementById("searchInput");
+  const searchContainer = document.getElementById("search-results");
+
+  if (searchInput && searchContainer) {
+    searchInput.addEventListener("input", () => {
+      const value = searchInput.value.toLowerCase().trim();
+
+      if (!value) {
+        searchContainer.innerHTML = "";
+        return;
+      }
+
+      const filtered = allItems.filter(item =>
+        item.name.toLowerCase().includes(value) ||
+        item.desc.toLowerCase().includes(value)
+      );
+
+      if (filtered.length === 0) {
+        searchContainer.classList.add("empty");
+
+        searchContainer.innerHTML = `
+          <div class="no-results">
+            <img src="icons/no-data.png">
+            <p>Упс... Нічого не знайдено :(</p>
+          </div>
+        `;
+        return;
+      }
+
+      renderCards(filtered, searchContainer);
+    });
+  }
+  /*Лічильник товарів в обраному*/
+function attachCounterHandlers() {
+  document.querySelectorAll(".card-small").forEach(card => {
+    const minus = card.querySelector(".minus");
+    const plus = card.querySelector(".plus");
+    const countEl = card.querySelector(".count");
+    const priceEl = card.querySelector(".price");
+
+    if (!minus || !plus) return;
+
+    const id = card.dataset.id;
+
+    // базова ціна
+    const item = allItems.find(i => i.id === id);
+    let basePrice = Number(item.price);
+
+    let count = 1;
+
+    plus.onclick = () => {
+      count++;
+      countEl.textContent = count;
+      priceEl.textContent = (basePrice * count) + " ₴";
+      updateTotal(); // 🔥 ДОДАТИ
+    };
+
+    minus.onclick = () => {
+      count--;
+
+      if (count <= 0) {
+        // 🔥 видаляємо з обраного
+        favorites = favorites.filter(f => f !== id);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+
+        card.remove();
+        updateTotal();
+        toggleFavoritesState();
+        return;
+      }
+
+      countEl.textContent = count;
+      priceEl.textContent = (basePrice * count) + " ₴";
+      updateTotal(); // 🔥 ДОДАТИ
+    };
+  });
+}
+
+});
+
+
+/*Хедер фіксується при скролінгу*/
+const header = document.querySelector(".app-header");
+const topBar = document.getElementById("topBar");
+
+let lastScroll = 0;
+
+window.addEventListener("scroll", () => {
+  const current = window.scrollY;
+  const height = topBar.offsetHeight;
+
+  if (current > lastScroll && current > 50) {
+    header.style.transform = `translateY(-${height}px)`;
+  } else {
+    header.style.transform = `translateY(0)`;
+  }
+
+  lastScroll = current;
+});
+
+/* Кнопка "Очистити"*/
+const clearBtn = document.getElementById("clear-favorites");
+
+if (clearBtn) {
+  clearBtn.addEventListener("click", () => {
+    // 🔥 очищаємо localStorage
+    localStorage.removeItem("favorites");
+
+    // 🔥 очищаємо список
+    const container = document.getElementById("rolls-container");
+    if (container) {
+      container.innerHTML = "";
+    }
+
+    // 🔥 обнуляємо суму
+    const totalEl = document.getElementById("total-price");
+    if (totalEl) {
+      totalEl.textContent = "0 ₴";
+    }
+  });
+}
+
+/*Лічильник обраного*/
+function updateFavCount() {
+  const favs = JSON.parse(localStorage.getItem("favorites")) || [];
+  const countEl = document.querySelector(".fav-count");
+
+  countEl.textContent = favs.length;
+
+  // ховаємо якщо 0
+  if (favs.length === 0) {
+    countEl.style.display = "none";
+  } else {
+    countEl.style.display = "flex";
+  }
+}
+
+// виклик при загрузці
+updateFavCount();
+
+function triggerFavAnimation() {
+  const fab = document.querySelector(".favorites-fab");
+
+  const wave = document.createElement("span");
+  wave.classList.add("fav-wave");
+
+  fab.appendChild(wave);
+
+  // видаляємо після анімації
+  setTimeout(() => {
+    wave.remove();
+  }, 600);
+}

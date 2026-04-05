@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Пошук</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="search-page-body">
+
+<header class="search-header">
+  <button class="back-btn" onclick="history.back()">
+    <img src="icons/back_icon.png" alt="back">
+  </button>
+
+  <div class="logo-center">
+    <img src="logo_1.png" alt="">
+    <span>ChiMi Rolls</span>
+  </div>
+</header>
+
+<div class="search-page">
+  <div class="search-bar">
+    <div class="search-input-wrapper">
+      <img src="icons/search.png" class="search-icon" alt="">
+      <input type="text" id="searchInput" placeholder="Пошук..." autofocus>
+    </div>
+  </div>
+</div>
+
+
+  
+<div id="search-results"></div>
+
+<a href="favorites.html" class="favorites-fab">
+  <img src="icons/heart-white.png" alt="favorites">
+  <span class="fav-count">0</span>
+</a>
+<script src="script.js"></script>
+</body>
+</html>

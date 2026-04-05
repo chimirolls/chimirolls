@@ -1,0 +1,939 @@
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: #1B1A22;
+  color: #F7F4F4;
+  
+}
+* {
+  box-sizing: border-box;
+}
+.menu {
+  padding: 0 16px;
+}
+
+/* для головних сторінок (є пошук) */
+.page-main .menu {
+  padding-top: 14px;
+  margin-top: 146px;
+  margin-bottom: 16px; /* header + tabs + search */
+}
+
+/* для обраного (без пошуку) */
+.page-favorites .menu {
+  margin-top: 164px; /* тільки header + tabs */
+  padding-bottom: 120px; /* 🔥 ОЦЕ */
+}
+
+
+/* контейнер */
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #1B1A22;
+  z-index: 1000;
+  padding: 0 16px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 10px 20px #282630;
+}
+
+/* верх */
+.top-bar {
+  /* transition: transform 0.3s ease;*/
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+}
+
+/* 🔥 важливо */
+.sticky-part {
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+  background: #1B1A22;
+  
+}
+
+/* логотип */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo img {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+}
+
+.logo span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #F7F4F4;
+}
+
+/* телефон */
+.phone {
+  font-size: 13px;
+  color: #F7F4F4;
+}
+
+/* таби */
+.tabs {
+  display: flex;
+  justify-content: center; 
+  gap: 32px;
+  margin: 16px;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.tabs span {
+  font-size: 14px;
+  color: #F7F4F4;
+  position: relative;
+}
+
+.tabs a {
+  text-decoration: none;
+  color: #B7B1CD;
+  font-size: 14px;
+  position: relative;
+}
+
+.tabs a.active {
+  color: #AE0000;
+  font-weight: 600;
+}
+
+.tabs a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #AE0000;
+}
+
+
+/* пошук */
+.search {
+  display: flex;
+  align-items: center;   /* 🔥 вирівнює по центру */
+  gap: 8px;
+
+  background: #3B3847;
+  border-radius: 20px;
+  padding: 10px 14px;
+  margin-bottom: 12px; 
+}
+
+.search input {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+
+  width: 100%;
+  font-size: 16px;
+}
+/* іконка */
+.search img {
+  width: 16px;
+  height: 16px;
+  
+}
+
+.search input::placeholder {
+  color: #938FA2;
+}
+
+/* заголовок */
+.category h2 {
+  margin-top: 20px;
+  margin-bottom: 14px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+
+
+
+
+/* картка */
+.card {
+  border-radius: 20px;
+  overflow: hidden;
+  background: #1A1C21;
+  box-shadow: 2px 4px 10.2px #514D5E;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+/* картинка */
+.card-img {
+  width: 100%;
+  
+  object-fit: cover;
+  display: block;
+  height: 100%;
+}
+
+/* білий блок */
+.card-content {
+  background: #F7F4F4;
+  padding: 16px;
+
+  flex-grow: 1; /* 🔥 ключ */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* верх */
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.top-row h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: #3C3C3D;
+}
+
+.price {
+  font-size: 16px;
+  font-weight: 600;
+  color: #3C3C3D;
+}
+
+/* низ */
+.bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 14px; /* мінімальний відступ */
+  margin-top: 18px;
+}
+
+.bottom-row p {
+  margin: 0;
+  font-size: 14px;
+  color: #6E6E6E;
+
+  flex: 1; /* займає весь простір */
+  min-width: 0; /* 🔥 дуже важливо */
+  
+}
+
+.weight {
+  font-size: 14px;
+  color: #6E6E6E;
+}
+
+
+/* 🔥 МАЛЕНЬКА КАРТКА (як на дизайні) */
+/* базова картка */
+.card-small {
+  display: flex;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  background: #F7F4F4;
+  box-shadow: 2px 4px 10px #514D5E;
+  position: relative;
+}
+
+/* фото */
+.page-favorites .card-small-img {
+  width: 120px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+/* головний контент справа */
+.page-favorites .card-small-content {
+  flex: 1;
+  padding: 12px;
+  background: #F7F4F4;
+
+  display: flex;
+  flex-direction: row; /* 🔥 ОСЬ ЦЬОГО НЕ ВИСТАЧАЛО */
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 10px;
+  min-height: 110px;
+  min-width: 0;
+}
+
+/* ліва колонка */
+.page-favorites .info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* верхній ряд */
+.page-favorites .top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* назва */
+.page-favorites .title {
+  flex: 1;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2A2A2A;
+  line-height: 1.2;
+}
+
+/* вага */
+.page-favorites .weight {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 4px;
+}
+
+/* ціна вниз */
+.page-favorites .price {
+  margin-top: auto;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2A2A2A;
+}
+
+/* права колонка */
+.page-favorites .actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+/* серце зверху */
+.page-favorites .like-btn {
+  margin-bottom: auto;
+}
+
+/* лічильник вниз */
+.page-favorites .counter {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  background: transparent; /* 🔥 прибираємо заливку */
+  border: 2px solid #adaabb; /* 🔥 сіра обводка */
+  border-radius: 8px;
+  padding: 4px 10px;
+  
+}
+
+.page-favorites .counter button {
+  background: none;
+  border: none;
+  color: #2A2A2A;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.page-favorites .count {
+  min-width: 12px;
+  text-align: center;
+  color: #2A2A2A;
+  font-weight: 600;
+}
+
+
+.card-img-wrapper {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.like-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  width: 36px;
+  height: 36px;
+
+  border-radius: 50%;
+  border: none;
+
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.heart-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  
+}
+
+.favorites-summary {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1B1A22;
+  width: 100%;
+  
+
+  padding: 16px;
+  box-sizing: border-box;
+  
+}
+
+/* сума */
+.total {
+  display: flex;
+  justify-content: space-between;
+  color: #F7F4F4;
+  margin-bottom: 12px;
+  font-size: 16px;
+  padding: 4px;
+  font-weight: 600;
+}
+
+/*Кнопка замовити*/
+.order-btn {
+  display: flex;              /* 🔥 головне */
+  align-items: center;        /* по вертикалі */
+  justify-content: center;    /* по центру */
+
+  gap: 8px;                   /* відступ між текстом і іконкою */
+
+  background: #AE0000;        /* червона кнопка */
+  color: white;
+
+  padding: 14px;
+  border-radius: 12px;
+
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+  white-space: nowrap;        /* щоб не переносилось */
+}
+
+/* іконка */
+.order-btn img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+/*Гаряча кнопка лайк*/
+.favorites-fab {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  width: 60px;
+  height: 60px;
+
+  background: #AE0000;
+  border-radius: 24%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 8px 20px rgba(10, 9, 33, 0.4);
+
+  z-index: 1000;
+}
+
+
+/* сам кружечок */
+.fav-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: white;
+  color: #1B1A22;
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(4, 4, 14, 0.4);
+}
+/* хвиля */
+.fav-wave {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(229, 57, 53, 0.4);
+  animation: wave 0.6s ease-out;
+  pointer-events: none;
+}
+
+@keyframes wave {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.favorites-fab img {
+  width: 26px;
+  height: 26px;
+}
+.favorites-fab:active {
+  transform: scale(0.95);
+}
+
+/* Кнопка "Очистити"*/
+.favorites-top {
+  position: fixed;
+  top: 88px; /* під header */
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-right: 16px;
+  padding-left: 20px;
+  background: #1B1A22;
+
+  z-index: 1000;
+}
+
+
+
+
+.clear-btn {
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: none;
+  background: #2A2D35;
+  color: #F7F4F4;
+  font-size: 10px;
+}
+
+/*Обране - порожня сторінка*/
+.empty-favorites {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  width: 100%;
+}
+
+/* місце під картинку */
+.empty-img {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 16px;
+  background: transparent; /* потім вставиш картинку */
+}
+
+.go-menu-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: #AE0000;
+  color: white;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+
+
+
+
+/*Пошук*/
+.search-page-body .search-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 52px;
+  background: #1B1A22;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.search-page-body .search-bar {
+  position: fixed;
+  top: 52px;
+  left: 0;
+  width: 100%;
+  padding: 10px 16px;
+  background: #1B1A22;
+  z-index: 999;
+  box-shadow: 0 10px 20px #282630;
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  background: #3B3847;
+  border-radius: 24px;
+  height: 40px;
+  padding: 0 12px;
+}
+
+.search-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+}
+
+.search-page-body #searchInput {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+  font-size: 16px;
+  width: 100%;
+}
+
+.search-page-body input::placeholder {
+  color: #938FA2;
+  font-size: 16px;
+}
+
+/* кнопка назад */
+.search-page-body .back-btn {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: white;
+  font-size: 22px;
+}
+.back-btn img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  transform: translateY(3px);
+}
+
+/* ЛОГО */
+.search-page-body .logo-center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.search-page-body .logo-center img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* ОБГОРТКА */
+.search-page-body .search-page {
+  padding-top: 108px;
+}
+
+/* КОНТЕНТ ПІД НИМ */
+.search-page-body #search-results {
+   /* header + input */
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* сам блок */
+.search-page-body .no-results {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #726F89;
+  font-size: 14px;
+  
+}
+
+/* ТЕКСТ "НЕ ЗНАЙДЕНО" */
+
+.search-page-body .no-results img {
+  width: 120px;
+  height: 120px;
+  display: block;
+  object-fit: contain;
+  margin-bottom: 12px;
+  opacity: 0.8;
+}
+
+/*Хедер*/
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* доставка */
+.delivery-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* іконка доставки */
+.delivery-link img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* кнопка дзвінка */
+.call-btn {
+  width: 36px;
+  height: 36px;
+
+  border-radius: 50%;
+  
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* іконка телефону */
+.call-btn img {
+  width: 18px;
+  height: 18px;
+}
+
+/*Доставка*/
+.delivery-page {
+  margin-top: 114px;
+  padding: 0 16px 20px;
+}
+
+/* заголовок */
+.page-title {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 16px;
+  padding: 0 12px;
+}
+
+/* картка */
+.delivery-card {
+  background: #F7F4F4;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  
+}
+
+/* заголовок в картці */
+.delivery-card h3 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  color: #3C3C3D;
+}
+
+/* рядок */
+.delivery-card .row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #3C3C3D;
+}
+
+/* додатковий текст */
+.delivery-card .extra {
+  margin: 0;
+  font-size: 14px;
+  color: #3C3C3D;
+  margin-bottom: 8px;
+}
+
+
+.delivery-card .extra-title {
+  margin-top: 14px;   /* 🔥 відступ зверху */
+  margin-bottom: 6px;
+
+  font-weight: 600;   /* 🔥 жирніше */
+  color: #3C3C3D;
+}
+
+/*Контакти на сторінці обране*/
+.contacts-card {
+  color: #3C3C3D;
+  background: #F7F4F4;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.contacts-card h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  text-decoration: none;
+  color: #3C3C3D;
+  border-bottom: 1px solid #3C3C3D;
+}
+
+.contact-row:last-child {
+  border-bottom: none;
+}
+
+.contact-row img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  opacity: 0.8;
+}
+
+.contact-row span {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+/*АДАПТИВ*/
+/* база (мобілка) */
+#rolls-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* десктоп */
+@media (min-width: 768px) {
+  #rolls-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  #rolls-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1400px) {
+  #rolls-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (min-width: 768px) {
+  .search-page-body #search-results {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .search-page-body #search-results {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1400px) {
+  .search-page-body #search-results {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+
+  .page-favorites .app {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    padding: 0 40px;
+  }
+
+  .page-favorites .app-header {
+    grid-column: 1 / -1;
+  }
+
+  .page-favorites .menu {
+    grid-column: 1;
+  }
+
+  .page-favorites .favorites-summary {
+    grid-column: 2;
+
+    position: sticky;
+    top: 120px;
+
+    /* 🔥 КРИТИЧНО */
+    left: auto;
+    transform: none;
+    max-width: none;
+    width: 100%;
+    bottom: auto;
+  }
+}
