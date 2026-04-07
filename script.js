@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   targetContainer.innerHTML = "";
 
   list.forEach(item => {
-    if (isFavoritesPage && !favorites.includes(item.id)) return;
+    if (isFavoritesPage && !favorites.some(f => String(f.id) === String(item.id))) return;
 
     const card = document.createElement("div");
     card.dataset.id = item.id;
@@ -135,22 +135,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     const card = btn.closest("[data-id]");
     const id = card.dataset.id;
 
-    if (favorites.includes(id)) {
+    if (favorites.some(f => f.id === id)) {
       btn.classList.add("active");
     } else {
       btn.classList.remove("active");
     }
 
     btn.onclick = () => {
-      if (favorites.includes(id)) {
-        favorites = favorites.filter(f => f !== id);
+      if (favorites.some(f => String(f.id) === String(id))) {
+        favorites = favorites.filter(f => String(f.id) !== String(id));
         btn.classList.remove("active");
 
         if (isFavoritesPage) {
           card.remove();
         }
       } else {
-        favorites.push(id);
+        favorites.push({
+          id: id,
+          type: isSetsPage ? "sets" : isSalatsPage ? "salats" : "rolls",
+          quantity: 1
+        });
         btn.classList.add("active");
 
         triggerFavAnimation();
@@ -234,24 +238,38 @@ function attachCounterHandlers() {
 
     const id = card.dataset.id;
 
-    // базова ціна
     const item = allItems.find(i => i.id === id);
     let basePrice = Number(item.price);
 
-    let count = 1;
+    let favItem = favorites.find(f => f.id === id);
 
+    let count = favItem ? favItem.quantity : 1;
+    countEl.textContent = count;
+    priceEl.textContent = (basePrice * count) + " ₴";
+
+    // ➕ PLUS
     plus.onclick = () => {
       count++;
+
+      const favItem = favorites.find(f => f.id === id);
+      if (favItem) {
+        favItem.quantity = count;
+      }
+
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+
       countEl.textContent = count;
       priceEl.textContent = (basePrice * count) + " ₴";
-      updateTotal(); 
+
+      updateTotal();
     };
 
+    // ➖ MINUS
     minus.onclick = () => {
       count--;
 
       if (count <= 0) {
-        favorites = favorites.filter(f => f !== id);
+        favorites = favorites.filter(f => f.id !== id);
         localStorage.setItem("favorites", JSON.stringify(favorites));
 
         card.remove();
@@ -260,9 +278,17 @@ function attachCounterHandlers() {
         return;
       }
 
+      const favItem = favorites.find(f => f.id === id);
+      if (favItem) {
+        favItem.quantity = count;
+      }
+
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+
       countEl.textContent = count;
       priceEl.textContent = (basePrice * count) + " ₴";
-      updateTotal(); 
+
+      updateTotal();
     };
   });
 }
@@ -311,16 +337,16 @@ function updateFavCount() {
   const favs = JSON.parse(localStorage.getItem("favorites")) || [];
   const countEl = document.querySelector(".fav-count");
 
+  if (!countEl) return; // 🔥 ОСЬ ЦЕ ГОЛОВНЕ
+
   countEl.textContent = favs.length;
 
-  // ховаємо якщо 0
   if (favs.length === 0) {
     countEl.style.display = "none";
   } else {
     countEl.style.display = "flex";
   }
 }
-
 // виклик при загрузці
 updateFavCount();
 
