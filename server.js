@@ -1,13 +1,12 @@
 const express = require("express");
 const cors = require("cors");
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-const TOKEN = "8763525647:AAG3cF6wkyMzIAJlpn_b3-840-1j7QBNPTg"; // встав свій новий
+const TOKEN = "8763525647:AAG3cF6wkyMzIAJlpn_b3-840-1j7QBNPTg";
 const CHAT_ID = "522177924";
 
 app.post("/order", async (req, res) => {
@@ -29,8 +28,11 @@ app.post("/order", async (req, res) => {
 
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "error" });
+    res.status(500).json({ success: false });
   }
 });
 
-app.listen(3000, () => console.log("Server running on 3000"));
+// 🔥 ВАЖЛИВО ДЛЯ RENDER
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => console.log("Server running"));
