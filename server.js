@@ -9,28 +9,26 @@ app.use(express.json());
 const TOKEN = "8763525647:AAG3cF6wkyMzIAJlpn_b3-840-1j7QBNPTg";
 const CHAT_ID = "522177924";
 
-app.post("/order", async (req, res) => {
+app.post("/order", (req, res) => {
   const { message } = req.body;
 
-  try {
-    fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    chat_id: CHAT_ID,
-    text: message
+  // 🔥 Відправляємо в Telegram БЕЗ await
+  fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      chat_id: CHAT_ID,
+      text: message
+    })
   })
-}).catch(err => console.error(err));
+  .then(response => response.json())
+  .then(data => console.log("Telegram OK:", data))
+  .catch(err => console.error("Telegram error:", err));
 
-// 🔥 ВІДПОВІДАЄМО ОДРАЗУ
-res.json({ success: true });
-
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ success: false });
-  }
+  // 🔥 Відповідаємо клієнту ОДРАЗУ
+  res.json({ success: true });
 });
 
 // 🔥 ВАЖЛИВО ДЛЯ RENDER
