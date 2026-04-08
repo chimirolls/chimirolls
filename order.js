@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-  // Отримуємо дані з локального сховища (favorites)
   let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-  // Фіксуємо старий формат, якщо він є
+  // 🔥 фікс старого формату
   favorites = favorites.map(f => {
     if (typeof f === "string") {
       return { id: f, type: "rolls", quantity: 1 };
@@ -16,13 +15,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   localStorage.setItem("favorites", JSON.stringify(favorites));
 
-  // Тягнемо товари з data.json
+  // тягнемо товари
   const res = await fetch("data.json");
   const data = await res.json();
 
-  // Обробка вибраних товарів
+  // правильний пошук
   const selectedItems = favorites.map(fav => {
+
     let source = [];
+
     if (fav.type === "rolls") source = data.rolls;
     if (fav.type === "sets") source = data.sets;
     if (fav.type === "salats") source = data.salats;
@@ -38,27 +39,27 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   }).filter(Boolean);
 
-  // Обчислюємо суму і формуємо текст замовлення
   let total = 0;
   let itemsText = "";
 
   selectedItems.forEach(item => {
     total += item.price * item.quantity;
+
     itemsText += `• ${item.name} x${item.quantity} — ${item.price * item.quantity} грн\n`;
   });
 
-  // Встановлюємо загальну суму
+  // сума
   const totalEl = document.getElementById("total-price");
   if (totalEl) {
     totalEl.textContent = total + " грн";
   }
 
-  // Отримуємо форму і додаємо обробник події на submit
+  // submit
   const form = document.getElementById("order-form");
 
   if (form) {
     form.addEventListener("submit", async function(e) {
-      e.preventDefault(); // Зупиняємо стандартну відправку форми
+      e.preventDefault();
 
       const name = document.getElementById("name").value;
       const phone = document.getElementById("phone").value;
@@ -68,7 +69,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       const persons = document.getElementById("persons").value;
       const comment = document.getElementById("comment").value;
 
-      // Формуємо повідомлення для надсилання на сервер
       const message = `
 🛒 НОВЕ ЗАМОВЛЕННЯ
 
@@ -91,48 +91,31 @@ ${comment || "-"}
 `;
 
       try {
-        const response = await fetch("https://chimi-backend.onrender.com/order", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            message: message
-          })
-        });
+  const response = await fetch("https://chimi-backend.onrender.com/order", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message: message
+    })
+  });
 
-        // 👉 НЕ ЧЕКАЄМО JSON
-        if (response.ok) {
-          localStorage.removeItem("favorites"); // Очищаємо локальне сховище
-          window.location.href = "success.html"; // Перехід на сторінку успіху
-        } else {
-          window.location.href = "error.html"; // Перехід на сторінку помилки
-        }
+  // 👉 НЕ ЧЕКАЄМО JSON
+  if (response.ok) {
+    localStorage.removeItem("favorites");
+    window.location.href = "success.html";
+  } else {
+    window.location.href = "error.html";
+  }
 
-      } catch (err) {
-        console.error(err);
-        window.location.href = "error.html"; // Перехід на сторінку помилки
-      }
+} catch (err) {
+  console.error(err);
+  window.location.href = "error.html";
+}
+
     });
   }
 
-  // Обробка кнопки відправки форми
-  const submitButton = document.getElementById("submit-button");
-  const loadingSpinner = document.getElementById("loading-spinner");
-
-  submitButton.addEventListener("click", function(e) {
-    // Зупиняємо багатократне натискання
-    e.preventDefault();
-
-    // Показуємо індикатор завантаження
-    loadingSpinner.style.display = "inline-block";
-
-    // Дизейбл кнопки
-    submitButton.disabled = true;
-    submitButton.textContent = "Надсилається...";
-
-    // Відправляємо форму
-    form.submit(); // Це дозволяє відправити форму після обробки
-  });
-
 });
+
