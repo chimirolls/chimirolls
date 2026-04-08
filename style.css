@@ -1187,3 +1187,18 @@ body.no-scroll {
   text-decoration: none;
   font-weight: 600;
 }
+
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 4px solid #f3f3f3; /* Світла частина */
+  border-top: 4px solid #AE0000; /* Темна частина */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 10px; /* Простір між текстом і спінером */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

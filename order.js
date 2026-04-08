@@ -118,3 +118,18 @@ ${comment || "-"}
   }
 
 });
+
+const submitButton = document.getElementById("submit-button");
+const loadingSpinner = document.getElementById("loading-spinner");
+
+submitButton.addEventListener("click", function() {
+  // Показуємо індикатор завантаження
+  loadingSpinner.style.display = "inline-block";
+
+  // Дизейбл кнопки, щоб не натискали кілька разів
+  submitButton.disabled = true;
+  submitButton.textContent = "Надсилається...";
+
+  // Далі продовжуємо відправку форми
+  form.submit(); // або твій код для submit
+});
