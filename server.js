@@ -13,18 +13,19 @@ app.post("/order", async (req, res) => {
   const { message } = req.body;
 
   try {
-    await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text: message
-      })
-    });
+    fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    chat_id: CHAT_ID,
+    text: message
+  })
+}).catch(err => console.error(err));
 
-    res.json({ success: true });
+// 🔥 ВІДПОВІДАЄМО ОДРАЗУ
+res.json({ success: true });
 
   } catch (err) {
     console.error(err);
