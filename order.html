@@ -46,15 +46,15 @@
   </header>
 
   <main class="menu page-order">
-    <!-- Модальне вікно -->
-<div id="loading-modal" class="loading-modal">
-  <div class="loading-content">
-    <div class="loading-spinner"></div>
-    <p>Зачекайте, ваше замовлення відправляється...</p>
+  <!-- Модальне вікно -->
+  <div id="loading-modal" class="loading-modal" style="display: none;">
+    <div class="loading-content">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">Зачекайте, ваше замовлення відправляється...</p>
+    </div>
   </div>
-</div>
-  <form id="order-form">
 
+  <form id="order-form">
     <!-- Контактні дані -->
     <h3>Контактні дані</h3>
     <div class="form-card">
@@ -69,7 +69,20 @@
     <h3>Доставка</h3>
     <div class="form-card">
       <label>Село</label>
-      <input type="text" id="city" placeholder="н.п Паволоч">
+      <div class="select-wrapper">
+        <select id="city">
+          <option value="">Оберіть село</option>
+          <option value="Соколів Брід">Соколів Брід</option>
+          <option value="Паволоч">Паволоч</option>
+          <option value="Миньківці">Миньківці</option>
+          <option value="Кривошиїнці">Кривошиїнці</option>
+          <option value="Інше">Інше</option>
+        </select>
+      </div>
+      <div id="other-city-wrapper" style="display: none;">
+        <label for="other-city">Введіть інше село</label>
+        <input type="text" id="other-city" name="other-city" placeholder="Введіть інше село" />
+      </div>
 
       <label>Назва та № вулиці</label>
       <input type="text" id="street" placeholder="вулиця">
@@ -86,8 +99,21 @@
         </select>
       </div>
 
+      <!-- Кількість персон -->
       <label>Кількість персон</label>
-      <input type="number" id="persons" value="1" min="1">
+      <div class="counter" id="person-counter">
+        <button type="button" class="decrement">-</button>
+        <span class="count" id="person-count">1</span>
+        <button type="button" class="increment">+</button>
+      </div>
+
+      <!-- Навчальні палички -->
+      <label>Навчальні палички</label>
+      <div class="counter" id="stick-counter">
+        <button type="button" class="decrement">-</button>
+        <span class="count" id="stick-count">0</span>
+        <button type="button" class="increment">+</button>
+      </div>
     </div>
 
     <!-- Коментар -->
@@ -95,7 +121,7 @@
     <div class="form-card">
       <textarea id="comment"></textarea>
     </div>
-    
+
     <!-- КОНТЕЙНЕР ДЛЯ СУМИ І КНОПКИ -->
     <div class="total-container">
       <!-- СУМА -->
@@ -106,14 +132,11 @@
 
       <!-- КНОПКА -->
       <button type="submit" class="submit-btn">
-  Надіслати форму
-  
-</button>
-
+        Надіслати форму
+      </button>
+    </div>
   </form>
-
 </main>
-
 <script src="order.js"></script>
 </body>
 </html>

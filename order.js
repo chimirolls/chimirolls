@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", async () => {
-
   let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
   // 🔥 фікс старого формату
@@ -15,11 +14,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   localStorage.setItem("favorites", JSON.stringify(favorites));
 
-  // тягнемо товари
+  // Тягнемо товари
   const res = await fetch("data.json");
   const data = await res.json();
 
-  // правильний пошук
+  // Правильний пошук
   const selectedItems = favorites.map(fav => {
 
     let source = [];
@@ -121,4 +120,60 @@ ${comment || "-"}
     });
   }
 
+});
+
+// Показати поле для іншого села
+document.addEventListener("DOMContentLoaded", function() {
+  const selectCity = document.getElementById("city");
+  const otherCityWrapper = document.getElementById("other-city-wrapper");
+
+  selectCity.addEventListener("change", function() {
+    if (selectCity.value === "Інше") {
+      // Показуємо поле для іншого села
+      otherCityWrapper.style.display = "block";
+    } else {
+      // Ховаємо поле для іншого села
+      otherCityWrapper.style.display = "none";
+    }
+  });
+});
+
+// Кількість персон
+document.addEventListener("DOMContentLoaded", function() {
+  const decrementPersonButton = document.querySelector("#person-counter .decrement");
+  const incrementPersonButton = document.querySelector("#person-counter .increment");
+  const personCountDisplay = document.getElementById("person-count");
+  
+  let personCount = parseInt(personCountDisplay.textContent);
+
+  decrementPersonButton.addEventListener("click", function() {
+    if (personCount > 1) {
+      personCount--;
+      personCountDisplay.textContent = personCount;
+    }
+  });
+
+  incrementPersonButton.addEventListener("click", function() {
+    personCount++;
+    personCountDisplay.textContent = personCount;
+  });
+
+  // Навчальні палички
+  const decrementStickButton = document.querySelector("#stick-counter .decrement");
+  const incrementStickButton = document.querySelector("#stick-counter .increment");
+  const stickCountDisplay = document.getElementById("stick-count");
+  
+  let stickCount = parseInt(stickCountDisplay.textContent);
+
+  decrementStickButton.addEventListener("click", function() {
+    if (stickCount > 0) {
+      stickCount--;
+      stickCountDisplay.textContent = stickCount;
+    }
+  });
+
+  incrementStickButton.addEventListener("click", function() {
+    stickCount++;
+    stickCountDisplay.textContent = stickCount;
+  });
 });

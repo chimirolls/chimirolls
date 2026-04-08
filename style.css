@@ -937,54 +937,66 @@ body.no-scroll {
 
 
 /* Сторінка з формою */
-/* 🔥 СТОРІНКА ORDER */
+/* СТОРІНКА ORDER */
 .page-order .menu {
   margin-top: 136px;
   padding: 0 16px 8px;
 }
 
-/* заголовки */
+/* Заголовки */
 .page-order h3 {
   font-size: 16px;
-  margin: 16px 4px 8px;
+  margin: 16px 4px 8px; /* Відступ між заголовком та елементами */
 }
 
 .page-order h2 {
   font-size: 18px;
-  
 }
 
-/* карточки форми */
+/* картки форми */
 .form-card {
   background: #F7F4F4;
   border-radius: 16px;
   padding: 14px;
-  margin-bottom: 12px;
+  margin-bottom: 16px; /* Збільшили відступ між картками */
   color: #3C3C3D;
 }
 
-/* інпути */
+/* інпути та textarea */
 .form-card input,
-.form-card textarea {
+.form-card textarea,
+.form-card select {
   width: 100%;
   border: none;
   outline: none;
-  
   background: transparent;
-  
   border: 2px solid #b9b7c9;
   border-radius: 10px;
   padding: 12px;
-  margin-top: 6px;
-  margin-bottom: 10px;
   font-size: 14px;
+  margin-top: 8px; /* Відступ між лейблом та полем вводу */
+  margin-bottom: 8px; /* Відступ між полями вводу */
 }
 
+/* Випадаючі списки */
+.select-wrapper select {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  border: 2px solid #b9b7c9;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 14px;
+  margin-top: 8px; /* Відступ між лейблом та селектом */
+  margin-bottom: 16px; /* Відступ між інпутами та селектом */
+}
+
+/* Стиль при фокусі */
 .form-card input:focus,
 .form-card textarea:focus,
 .form-card select:focus {
   border: 2px solid #05cfc2;
-  
 }
 
 /* textarea */
@@ -993,6 +1005,11 @@ body.no-scroll {
   height: 80px;
 }
 
+/* лейбли */
+.form-card label {
+ 
+  display: block; /* Забезпечує відображення лейблів як блочні елементи */
+}
 
 /* блок назад */
 .back-bar {
@@ -1006,7 +1023,6 @@ body.no-scroll {
   background: none;
   border: none;
   cursor: pointer;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1019,7 +1035,7 @@ body.no-scroll {
 
 /* Загальний контейнер форми (щоб не перекривався з кнопкою) */
 .page-order {
-  margin-bottom: 120px; 
+  margin-bottom: 120px;
 }
 
 /* СТИЛІ ДЛЯ СУМИ І КНОПКИ */
@@ -1028,10 +1044,8 @@ body.no-scroll {
   bottom: 0;
   left: 0;
   width: 100%;
-
-  background: #0f0f1a; 
+  background: #0f0f1a;
   padding: 12px 16px 20px;
-
   box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
   z-index: 9999;
 }
@@ -1041,11 +1055,9 @@ body.no-scroll {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   font-size: 16px;
   font-weight: 600;
   color: white;
-
   margin-bottom: 10px;
 }
 
@@ -1061,6 +1073,7 @@ body.no-scroll {
   border-radius: 12px;
 }
 
+/* Селект - Клас для випадаючих списків */
 .select-wrapper {
   position: relative;
 }
@@ -1071,13 +1084,12 @@ body.no-scroll {
   border: none;
   outline: none;
   background: transparent;
-  
   border: 2px solid #b9b7c9;
   border-radius: 10px;
-
-  padding: 12px 40px 12px 12px; /* 🔥 місце справа */
+  padding: 12px;
   font-size: 14px;
-
+  margin-top: 8px;
+  margin-bottom: 8px;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -1090,13 +1102,10 @@ body.no-scroll {
   right: 12px;
   top: 50%;
   transform: translateY(-50%);
-
   width: 16px;
   height: 16px;
-
   background: url("icons/down.png") no-repeat center;
   background-size: contain;
-
   pointer-events: none;
 }
 
@@ -1114,7 +1123,7 @@ body.no-scroll {
   align-items: center;
 
   text-align: center;
-  background: #0f0f1a;
+  background: #1B1A22;
   color: white;
   padding: 20px;
 }
@@ -1157,7 +1166,7 @@ body.no-scroll {
   align-items: center;
 
   text-align: center;
-  background: #0f0f1a;
+  background: #1B1A22;
   color: white;
   padding: 20px;
 }
@@ -1191,6 +1200,28 @@ body.no-scroll {
 
 
 /* Стиль модального вікна */
+.card-container {
+  padding: 20px; /* Відступи всередині картки */
+  margin: 0 15px; /* Відступи по боках картки */
+  background-color: #fff; /* Білий фон картки */
+  border-radius: 10px; /* Заокруглені кути */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тінь навколо картки */
+  width: calc(100% - 30px); /* Встановлення ширини картки з відступами */
+}
+
+/* Стиль для тексту */
+.card-container p,
+.card-container label,
+.card-container input,
+.card-container select,
+.card-container textarea {
+  color: #333; /* Темний текст для кращої контрастності */
+  font-size: 16px; /* Розмір шрифту */
+  line-height: 1.5; /* Висота рядка */
+  font-weight: 400; /* Нормальна товщина шрифта */
+}
+
+/* Модальне вікно */
 .loading-modal {
   display: none; /* Спочатку приховано */
   position: fixed;
@@ -1198,27 +1229,42 @@ body.no-scroll {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.7); /* Темний фон для модалки */
+  z-index: 9999; /* Модальне вікно поверх всіх елементів */
   justify-content: center;
   align-items: center;
+  transition: opacity 0.3s ease;
 }
 
+/* Вміст модалки */
 .loading-content {
   background-color: #fff;
-  padding: 20px;
+  padding: 30px 40px;
   border-radius: 10px;
   text-align: center;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Тінь навколо модалки */
+  animation: fadeIn 0.5s ease;
 }
 
+/* Індикатор завантаження */
 .loading-spinner {
-  border: 4px solid #f3f3f3; /* Світло-сіре коло */
-  border-top: 4px solid #3498db; /* Синє коло */
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #0078e0;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   animation: spin 1s linear infinite;
-  margin: 0 auto 10px;
+  margin: 0 auto 20px;
+}
+
+/* Текст в модальному вікні */
+.loading-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1B1A22; 
+  margin-top: 16px;
 }
 
 /* Анімація обертання */
@@ -1227,23 +1273,63 @@ body.no-scroll {
   100% { transform: rotate(360deg); }
 }
 
-/* Стиль кнопки */
-.submit-btn {
-  background-color: #28a745;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+/* Плавне з'явлення модалки */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
+/* Стиль кнопки */
+
 
 .submit-btn:hover {
-  background-color: #218838;
+  background-color: #ef1d1d;
 }
 
 .submit-btn:disabled {
   background-color: #6c757d;
   cursor: not-allowed;
+}
+
+
+/* Загальний стиль для обох лічильників */
+/* Загальний стиль для обох лічильників */
+.counter {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  display: inline-flex; /* Використовуємо inline-flex, щоб лічильник займав мінімальний простір */
+  align-items: center;
+  gap: 8px; /* Відступ між кнопками і числом */
+  background: transparent;
+  border: 2px solid #adaabb;
+  border-radius: 8px;
+  padding: 4px 10px;
+}
+
+/* Стиль для кнопок + та - */
+.counter button {
+  background: none;
+  border: none;
+  color: #2A2A2A;
+  font-size: 24px; /* Збільшили шрифт для кнопок */
+  cursor: pointer;
+  font-weight: 200;
+  width: 24px; /* Ширина кнопок */
+  height: 24px; /* Висота кнопок */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; /* Заокруглені кнопки */
+}
+
+/* Текст між кнопками */
+.counter .count {
+  min-width: 30px; /* Збільшили ширину числа, щоб воно виглядало компактно */
+  text-align: center;
+  color: #2A2A2A;
+  font-weight: 600;
+  font-size: 14px; /* Розмір числа залишається таким самим */
 }
