@@ -101,26 +101,17 @@ ${comment || "-"}
     })
   });
 
-  // якщо сервер впав або не 200
-  if (!response.ok) {
-    throw new Error("Server error");
-  }
-
-  const data = await response.json();
-
-  // ✅ УСПІХ
-  if (data.success) {
+  // 👉 НЕ ЧЕКАЄМО JSON
+  if (response.ok) {
     localStorage.removeItem("favorites");
-
-    window.location.href = window.location.origin + "success.html";
+    window.location.href = "success.html";
   } else {
-    window.location.href = window.location.origin + "error.html";
+    window.location.href = "error.html";
   }
 
 } catch (err) {
   console.error(err);
-
-  window.location.href = window.location.origin + "error.html";
+  window.location.href = "error.html";
 }
 
     });
