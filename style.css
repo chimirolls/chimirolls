@@ -1190,17 +1190,60 @@ body.no-scroll {
 
 
 
-.loading-spinner {
-  width: 20px;
-  height: 20px;
-  border: 4px solid #f3f3f3; /* Світла частина */
-  border-top: 4px solid #AE0000; /* Темна частина */
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-left: 10px; /* Простір між текстом і спінером */
+/* Стиль модального вікна */
+.loading-modal {
+  display: none; /* Спочатку приховано */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
 }
 
+.loading-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.loading-spinner {
+  border: 4px solid #f3f3f3; /* Світло-сіре коло */
+  border-top: 4px solid #3498db; /* Синє коло */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 10px;
+}
+
+/* Анімація обертання */
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* Стиль кнопки */
+.submit-btn {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #218838;
+}
+
+.submit-btn:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
 }
