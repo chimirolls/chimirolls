@@ -39,49 +39,59 @@
     </div>
 
     <div class="sticky-part">
-    <nav class="tabs">
-      <a href="index.html">Роли</a>
-      <a href="sets.html">Сети</a>
-      <a href="other.html">Салати</a>
-      <a href="favorites.html" class="active">Кошик</a>
-    </nav>
+      <nav class="tabs">
+        <a href="index.html">Роли</a>
+        <a href="sets.html">Сети</a>
+        <a href="other.html">Салати</a>
+        <a href="favorites.html" class="active">Кошик</a>
+      </nav>
+    </div>
 
-    
-  </div>
     <div class="favorites-top">
       <h2>Замовляємо?</h2>
       <button id="clear-favorites" class="clear-btn">Очистити</button>
     </div>
+
   </header>
 
   <main class="menu">
 
-  <div class="favorites-layout">
+    <div class="favorites-layout">
 
-    <section class="category" id="rolls-container"></section>
+      <section class="category" id="rolls-container"></section>
 
-    <div class="favorites-summary">
-      <div class="total">
-        <span>Сума</span>
-        <span id="total-price">0 ₴</span>
+      <div class="favorites-summary">
+        <div class="total">
+          <span>Сума</span>
+          <span id="total-price">0 ₴</span>
+        </div>
+
+        <!-- 📞 дзвінок -->
+        <a href="tel:+380931449496" class="order-btn">
+          <span>Зв'язатися з нами</span>
+          <img src="icons/call.png" alt="call">
+        </a>
+
+        <!-- 📝 НОВА КНОПКА -->
+        <a href="order.html" class="order-btn secondary">
+          <span>Замовити через форму</span>
+        </a>
+
       </div>
 
-      <a href="tel:+380931449496" class="order-btn">
-        <span>Зв'язатися з нами</span>
-        <img src="icons/call.png" alt="call">
-      </a>
     </div>
 
-  </div>
+  </main>
 
-</main>
   <div id="empty-favorites" class="empty-favorites" style="display: none;">
     <div class="empty-img"></div>
     <h3>Ви ще нічого не обрали</h3>
     <p>Але це ніколи не пізно виправити :)</p>
     <a href="index.html" class="go-menu-btn">В МЕНЮ</a>
   </div>
+
 </div>
+
 <script src="script.js"></script>
 
 </body>

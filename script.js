@@ -1,3 +1,4 @@
+/*test*/
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.getElementById("rolls-container");
 

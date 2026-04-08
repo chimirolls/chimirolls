@@ -925,3 +925,265 @@ body.no-scroll {
     bottom: auto;
   }
 }
+
+
+.order-btn.secondary {
+  background: rgba(174, 0, 0, 0.15);
+  backdrop-filter: blur(6px); 
+  border: 3px solid #AE0000;
+  color: #F7F4F4;
+  margin-top: 10px;
+}
+
+
+/* Сторінка з формою */
+/* 🔥 СТОРІНКА ORDER */
+.page-order .menu {
+  margin-top: 136px;
+  padding: 0 16px 8px;
+}
+
+/* заголовки */
+.page-order h3 {
+  font-size: 16px;
+  margin: 16px 4px 8px;
+}
+
+.page-order h2 {
+  font-size: 18px;
+  
+}
+
+/* карточки форми */
+.form-card {
+  background: #F7F4F4;
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 12px;
+  color: #3C3C3D;
+}
+
+/* інпути */
+.form-card input,
+.form-card textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  
+  background: transparent;
+  
+  border: 2px solid #b9b7c9;
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 6px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.form-card input:focus,
+.form-card textarea:focus,
+.form-card select:focus {
+  border: 2px solid #05cfc2;
+  
+}
+
+/* textarea */
+.form-card textarea {
+  resize: none;
+  height: 80px;
+}
+
+
+/* блок назад */
+.back-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 4px;
+}
+
+.back-btn-ord {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-btn-ord img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Загальний контейнер форми (щоб не перекривався з кнопкою) */
+.page-order {
+  margin-bottom: 120px; 
+}
+
+/* СТИЛІ ДЛЯ СУМИ І КНОПКИ */
+.page-order .total-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  background: #0f0f1a; 
+  padding: 12px 16px 20px;
+
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+  z-index: 9999;
+}
+
+/* сума */
+.page-order .total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+
+  margin-bottom: 10px;
+}
+
+/* кнопка */
+.page-order .submit-btn {
+  width: 100%;
+  background: #AE0000;
+  color: white;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+/* сам select */
+.select-wrapper select {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  
+  border: 2px solid #b9b7c9;
+  border-radius: 10px;
+
+  padding: 12px 40px 12px 12px; /* 🔥 місце справа */
+  font-size: 14px;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+/* 🔥 твоя стрілка СПРАВА */
+.select-wrapper::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 16px;
+  height: 16px;
+
+  background: url("icons/down.png") no-repeat center;
+  background-size: contain;
+
+  pointer-events: none;
+}
+
+/* прибрати стандартну стрілку */
+.select-wrapper select::-ms-expand {
+  display: none;
+}
+
+/*Success page*/
+.success-page {
+  height: calc(100vh - 80px); /* 🔥 мінус хедер */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  background: #0f0f1a;
+  color: white;
+  padding: 20px;
+}
+
+.success-page img {
+  width: 120px;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+.success-page h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.success-page .btn {
+  background: #AE0000;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.success-page .note {
+  font-size: 13px;
+  opacity: 0.6;
+  margin-top: 40px;
+  line-height: 1.4;
+}
+
+/*Error page*/
+
+.error-page {
+  height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  background: #0f0f1a;
+  color: white;
+  padding: 20px;
+}
+
+.error-page img {
+  width: 120px;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+.error-page h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.error-page p {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+.error-page .btn {
+  background: #AE0000;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+}
