@@ -90,38 +90,30 @@ ${comment || "-"}
 💰 Сума: ${total} грн
 `;
 
-      const submitButton = document.getElementById("submit-button");
-      const loadingSpinner = document.getElementById("loading-spinner");
-
-      // Показуємо індикатор завантаження
-      loadingSpinner.style.display = "inline-block";
-      // Дизейбл кнопки
-      submitButton.disabled = true;
-      submitButton.textContent = "Надсилається...";
-
       try {
-        const response = await fetch("https://chimi-backend.onrender.com/order", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            message: message
-          })
-        });
+  const response = await fetch("https://chimi-backend.onrender.com/order", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message: message
+    })
+  });
 
-        // 👉 НЕ ЧЕКАЄМО JSON
-        if (response.ok) {
-          localStorage.removeItem("favorites");
-          window.location.href = "success.html"; // Перехід на сторінку успіху
-        } else {
-          window.location.href = "error.html"; // Перехід на сторінку помилки
-        }
+  // 👉 НЕ ЧЕКАЄМО JSON
+  if (response.ok) {
+    localStorage.removeItem("favorites");
+    window.location.href = "success.html";
+  } else {
+    window.location.href = "error.html";
+  }
 
-      } catch (err) {
-        console.error(err);
-        window.location.href = "error.html"; // Перехід на сторінку помилки
-      }
+} catch (err) {
+  console.error(err);
+  window.location.href = "error.html";
+}
+
     });
   }
 
