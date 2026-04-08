@@ -91,7 +91,7 @@ ${comment || "-"}
 `;
 
       try {
-  const response = await fetch("https://chimi-backend.onrender.com", {
+  const response = await fetch("https://chimi-backend.onrender.com/order", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
