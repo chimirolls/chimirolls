@@ -112,15 +112,15 @@ ${comment || "-"}
   if (data.success) {
     localStorage.removeItem("favorites");
 
-    window.location.href = window.location.origin + "/success.html";
+    window.location.href = window.location.origin + "https://chimi-backend.onrender.com/success.html";
   } else {
-    window.location.href = window.location.origin + "/error.html";
+    window.location.href = window.location.origin + "https://chimi-backend.onrender.com/error.html";
   }
 
 } catch (err) {
   console.error(err);
 
-  window.location.href = window.location.origin + "/error.html";
+  window.location.href = window.location.origin + "https://chimi-backend.onrender.com/error.html";
 }
 
     });
