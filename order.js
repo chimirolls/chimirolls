@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-  // Фікс старого формату
+  // 🔥 фікс старого формату
   favorites = favorites.map(f => {
     if (typeof f === "string") {
       return { id: f, type: "rolls", quantity: 1 };
@@ -15,11 +15,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   localStorage.setItem("favorites", JSON.stringify(favorites));
 
-  // Тягнемо товари
+  // тягнемо товари
   const res = await fetch("data.json");
   const data = await res.json();
 
-  // Правильний пошук
+  // правильний пошук
   const selectedItems = favorites.map(fav => {
 
     let source = [];
@@ -44,29 +44,22 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   selectedItems.forEach(item => {
     total += item.price * item.quantity;
+
     itemsText += `• ${item.name} x${item.quantity} — ${item.price * item.quantity} грн\n`;
   });
 
-  // Встановлюємо суми
+  // сума
   const totalEl = document.getElementById("total-price");
   if (totalEl) {
     totalEl.textContent = total + " грн";
   }
 
+  // submit
   const form = document.getElementById("order-form");
-  const submitButton = document.getElementById("submit-button");
-  const loadingSpinner = document.getElementById("loading-spinner");
 
-  // Подія на submit форми
   if (form) {
     form.addEventListener("submit", async function(e) {
-      e.preventDefault(); // Зупиняємо стандартне відправлення форми
-
-      // Показуємо індикатор завантаження
-      loadingSpinner.style.display = "inline-block";
-      // Дизейблимо кнопку
-      submitButton.disabled = true;
-      submitButton.textContent = "Надсилається...";
+      e.preventDefault();
 
       const name = document.getElementById("name").value;
       const phone = document.getElementById("phone").value;
@@ -98,28 +91,29 @@ ${comment || "-"}
 `;
 
       try {
-        const response = await fetch("https://chimi-backend.onrender.com/order", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            message: message
-          })
-        });
+  const response = await fetch("https://chimi-backend.onrender.com/order", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message: message
+    })
+  });
 
-        // 👉 НЕ ЧЕКАЄМО JSON
-        if (response.ok) {
-          localStorage.removeItem("favorites");
-          window.location.href = "success.html"; // Перехід на сторінку успіху
-        } else {
-          window.location.href = "error.html"; // Перехід на сторінку помилки
-        }
+  // 👉 НЕ ЧЕКАЄМО JSON
+  if (response.ok) {
+    localStorage.removeItem("favorites");
+    window.location.href = "success.html";
+  } else {
+    window.location.href = "error.html";
+  }
 
-      } catch (err) {
-        console.error(err);
-        window.location.href = "error.html"; // Перехід на сторінку помилки
-      }
+} catch (err) {
+  console.error(err);
+  window.location.href = "error.html";
+}
+
     });
   }
 
