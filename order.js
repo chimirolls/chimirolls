@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", async function() {
-
-  
   // Вибір між доставкою та самовивозом
   const deliveryBtn = document.getElementById("delivery-btn");
   const pickupBtn = document.getElementById("pickup-btn");
@@ -75,7 +73,8 @@ document.addEventListener("DOMContentLoaded", async function() {
     stickCount++;
     stickCountDisplay.textContent = stickCount;
   });
-let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
   // 🔥 Фікс старого формату
   favorites = favorites.map(f => {
@@ -124,6 +123,7 @@ let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
   if (totalEl) {
     totalEl.textContent = total + " грн";
   }
+
   // Обробка відправки форми
   const form = document.getElementById("order-form");
   form.addEventListener("submit", async function(e) {
@@ -154,9 +154,8 @@ let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     const sticks = document.getElementById("stick-count").textContent;
     const comment = document.getElementById("comment").value;
 
-    const total = await calculateTotal(); // Обчислення суми
+    const total = total; // Сума
 
-    // Формуємо повідомлення для Telegram
     const message = `
 🛒 НОВЕ ЗАМОВЛЕННЯ
 
