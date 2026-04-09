@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Правильний пошук
   const selectedItems = favorites.map(fav => {
-
     let source = [];
 
     if (fav.type === "rolls") source = data.rolls;
@@ -35,7 +34,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       ...item,
       quantity: fav.quantity
     };
-
   }).filter(Boolean);
 
   let total = 0;
@@ -68,7 +66,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       const city = document.getElementById("city").value;
       const street = document.getElementById("street").value;
       const time = document.getElementById("time").value;
-      const persons = document.getElementById("persons").value;
+
+      // Збираємо кількість персон і паличок з лічильників
+      const persons = document.getElementById("person-count").textContent;
+      const sticks = document.getElementById("stick-count").textContent;
+
       const comment = document.getElementById("comment").value;
 
       const message = `
@@ -82,6 +84,7 @@ ${city}, ${street}
 
 ⏰ Час: ${time}
 👥 Осіб: ${persons}
+🍡 Паличок: ${sticks}
 
 🍣 Замовлення:
 ${itemsText}
