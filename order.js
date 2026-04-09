@@ -171,8 +171,8 @@ ${deliveryForm.style.display === "block" ? `
 Вулиця: ${street}` : ""}
 
 ⏰ Час: ${time}
-👥 Кількість персон: ${persons}
-🍡 Звичайні палички: ${sticks}
+👥 Звичайні персон: ${persons}
+🍡 Навчальні палички: ${sticks}
 
 💬 Коментар: ${comment || "-"}
 💰 Сума: ${total} грн
