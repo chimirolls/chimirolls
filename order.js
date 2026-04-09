@@ -74,10 +74,15 @@ document.addEventListener("DOMContentLoaded", function() {
     stickCountDisplay.textContent = stickCount;
   });
 
-  // Рахуємо загальну суму
+  // Рахуємо загальну суму з локального сховища
   const calculateTotal = () => {
-    const itemPrices = [650, 700]; // Приклад цін товарів (замініть на реальні)
-    const totalPrice = itemPrices.reduce((total, price) => total + price, 0);
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || []; // Отримуємо дані з localStorage
+    let totalPrice = 0;
+
+    // Обчислюємо загальну суму, додаючи ціни кожного елемента
+    favorites.forEach(item => {
+      totalPrice += item.price * item.quantity; // Беремо ціну та кількість товару
+    });
 
     // Додавання суми в форму
     document.getElementById("total-price").textContent = totalPrice + " грн";
@@ -102,6 +107,10 @@ document.addEventListener("DOMContentLoaded", function() {
     // В залежності від вибору форми
     if (deliveryForm.style.display === "block") {
       city = document.getElementById("city").value;
+      // Якщо село "Інше", додаємо значення з поля введення для іншого села
+      if (city === "Інше") {
+        city = document.getElementById("other-city").value;
+      }
       street = document.getElementById("street").value;
       time = document.getElementById("time").value;
     } else {
@@ -123,14 +132,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
 Тип замовлення: ${deliveryForm.style.display === "block" ? "Доставка" : "Самовивіз"}
 
-${deliveryForm.style.display === "block" ? `📍 Адреса:
+${deliveryForm.style.display === "block" ? `
+📍 Адреса:
 Село: ${city}
 Вулиця: ${street}` : ""}
 
 ⏰ Час: ${time}
 👥 Кількість персон: ${persons}
-🍡 Звичайні палички: ${sticks}
-🍡 Навчальні палички: ${stickCount}
+🍡 Звичайні палички: ${stickCount}
 
 💬 Коментар: ${comment || "-"}
 💰 Сума: ${total} грн

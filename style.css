@@ -902,7 +902,7 @@ body.no-scroll {
 .order-btn.secondary {
   background: rgba(174, 0, 0, 0.15);
   backdrop-filter: blur(6px); 
-  border: 3px solid #AE0000;
+  border: 2px solid #AE0000;
   color: #F7F4F4;
   margin-top: 10px;
 }
@@ -1268,7 +1268,7 @@ body.no-scroll {
 
 
 /* Загальний стиль для обох лічильників */
-.counter {
+.page-order .counter {
   margin-top: 8px;
   margin-bottom: 8px;
   display: inline-flex; 
@@ -1278,10 +1278,11 @@ body.no-scroll {
   border: 2px solid #c9c8d1;
   border-radius: 8px;
   padding: 4px 10px;
+  
 }
 
 /* Стиль для кнопок + та - */
-.counter button {
+.page-order .counter button {
   background: none;
   border: none;
   color: #2A2A2A;
@@ -1297,7 +1298,7 @@ body.no-scroll {
 }
 
 /* Текст між кнопками */
-.counter .count {
+.page-order .counter .count {
   min-width: 30px; 
   text-align: center;
   color: #2A2A2A;
@@ -1340,7 +1341,6 @@ body.no-scroll {
 .form-card div {
   display: flex;
 }
-
 
 
 /* Стиль для кнопок */
