@@ -375,6 +375,8 @@ likeButtons.forEach((button) => {
     const price = card.querySelector('.price').textContent; // Отримуємо ціну товару
     const imgSrc = card.querySelector('.card-img').src; // Отримуємо зображення товару
 
+    console.log('Adding to cart:', name, price); 
+
     // Надсилаємо подію в Google Analytics
     gtag('event', 'add_to_cart', {
       'event_category': 'cart',
