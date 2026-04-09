@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     e.preventDefault();
 
     const loadingModal = document.getElementById("loading-modal");
-    loadingModal.style.display = "flex";
+    loadingModal.style.display = "flex";  // Показуємо індикатор завантаження
 
     const name = document.getElementById("name").value;
     const phone = document.getElementById("phone").value;
@@ -138,11 +138,11 @@ document.addEventListener("DOMContentLoaded", async function() {
     let street = "";
     let time = "";
 
-    // В залежності від вибору форми
+    // Отримуємо дані про замовлення
     if (deliveryForm.style.display === "block") {
       city = document.getElementById("city").value;
       if (city === "Інше") {
-        city = document.getElementById("other-city").value;
+        city = document.getElementById("other-city").value; // Якщо вибрано "Інше", додаємо значення
       }
       street = document.getElementById("street").value;
       time = document.getElementById("time").value;
@@ -154,7 +154,8 @@ document.addEventListener("DOMContentLoaded", async function() {
     const sticks = document.getElementById("stick-count").textContent;
     const comment = document.getElementById("comment").value;
 
-    const total = total; // Сума
+    // Сума вже обчислюється в функції calculateTotal
+    const total = await calculateTotal(); // Беремо значення суми
 
     const message = `
 🛒 НОВЕ ЗАМОВЛЕННЯ
@@ -171,13 +172,14 @@ ${deliveryForm.style.display === "block" ? `
 
 ⏰ Час: ${time}
 👥 Кількість персон: ${persons}
-🍡 Звичайні палички: ${stickCount}
+🍡 Звичайні палички: ${sticks}
 
 💬 Коментар: ${comment || "-"}
 💰 Сума: ${total} грн
 `;
 
     try {
+      console.log("Відправка запиту на сервер...");  // Логування перед відправкою запиту
       const response = await fetch("https://chimi-backend.onrender.com/order", {
         method: "POST",
         headers: {
@@ -188,20 +190,49 @@ ${deliveryForm.style.display === "block" ? `
         })
       });
 
-      if (response.ok) {
+      // Перевіряємо відповідь сервера
+      if (!response.ok) {
+        throw new Error(`Помилка від сервера: ${response.statusText}`);
+      }
+
+      const responseData = await response.json();
+      console.log("Відповідь від сервера:", responseData);  // Логування відповіді
+
+      if (responseData.success) {
         localStorage.removeItem("favorites");
         window.location.href = "success.html"; // Перехід на сторінку успіху
       } else {
-        window.location.href = "error.html"; // Перехід на сторінку помилки
+        throw new Error("Помилка при обробці замовлення");
       }
     } catch (err) {
-      console.error(err);
+      console.error("Помилка при надсиланні запиту:", err);
       window.location.href = "error.html"; // Перехід на сторінку помилки
     } finally {
-      loadingModal.style.display = "none";
+      loadingModal.style.display = "none";  // Сховуємо індикатор після завершення
     }
   });
 });
+
+async function calculateTotal() {
+  let total = 0;
+  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  const res = await fetch("data.json");
+  const data = await res.json();
+
+  favorites.forEach(fav => {
+    let source = [];
+    if (fav.type === "rolls") source = data.rolls;
+    if (fav.type === "sets") source = data.sets;
+    if (fav.type === "salats") source = data.salats;
+
+    const item = source.find(i => String(i.id) === String(fav.id));
+    if (item) {
+      total += item.price * fav.quantity;
+    }
+  });
+
+  return total;
+}
 
 // Кількість персон
 document.addEventListener("DOMContentLoaded", function() {
