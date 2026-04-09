@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function() {
+
+  
   // Вибір між доставкою та самовивозом
   const deliveryBtn = document.getElementById("delivery-btn");
   const pickupBtn = document.getElementById("pickup-btn");
@@ -73,23 +75,55 @@ document.addEventListener("DOMContentLoaded", function() {
     stickCount++;
     stickCountDisplay.textContent = stickCount;
   });
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-  // Рахуємо загальну суму з локального сховища
-  const calculateTotal = () => {
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || []; // Отримуємо дані з localStorage
-    let totalPrice = 0;
+  // 🔥 Фікс старого формату
+  favorites = favorites.map(f => {
+    if (typeof f === "string") {
+      return { id: f, type: "rolls", quantity: 1 };
+    }
+    if (!f.type) {
+      return { ...f, type: "rolls" };
+    }
+    return f;
+  });
 
-    // Обчислюємо загальну суму, додаючи ціни кожного елемента
-    favorites.forEach(item => {
-      totalPrice += item.price * item.quantity; // Беремо ціну та кількість товару
-    });
+  localStorage.setItem("favorites", JSON.stringify(favorites));
 
-    // Додавання суми в форму
-    document.getElementById("total-price").textContent = totalPrice + " грн";
+  // Тягнемо товари
+  const res = await fetch("data.json");
+  const data = await res.json();
 
-    return totalPrice;
-  };
+  // Правильний пошук
+  const selectedItems = favorites.map(fav => {
+    let source = [];
 
+    if (fav.type === "rolls") source = data.rolls;
+    if (fav.type === "sets") source = data.sets;
+    if (fav.type === "salats") source = data.salats;
+
+    const item = source.find(i => String(i.id) === String(fav.id));
+    if (!item) return null;
+
+    return {
+      ...item,
+      quantity: fav.quantity
+    };
+  }).filter(Boolean);
+
+  let total = 0;
+  let itemsText = "";
+
+  selectedItems.forEach(item => {
+    total += item.price * item.quantity;
+    itemsText += `• ${item.name} x${item.quantity} — ${item.price * item.quantity} грн\n`;
+  });
+
+  // Сума
+  const totalEl = document.getElementById("total-price");
+  if (totalEl) {
+    totalEl.textContent = total + " грн";
+  }
   // Обробка відправки форми
   const form = document.getElementById("order-form");
   form.addEventListener("submit", async function(e) {
@@ -107,7 +141,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // В залежності від вибору форми
     if (deliveryForm.style.display === "block") {
       city = document.getElementById("city").value;
-      // Якщо село "Інше", додаємо значення з поля введення для іншого села
       if (city === "Інше") {
         city = document.getElementById("other-city").value;
       }
@@ -121,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const sticks = document.getElementById("stick-count").textContent;
     const comment = document.getElementById("comment").value;
 
-    const total = calculateTotal(); // Обчислення суми
+    const total = await calculateTotal(); // Обчислення суми
 
     // Формуємо повідомлення для Telegram
     const message = `
@@ -167,22 +200,6 @@ ${deliveryForm.style.display === "block" ? `
       window.location.href = "error.html"; // Перехід на сторінку помилки
     } finally {
       loadingModal.style.display = "none";
-    }
-  });
-});
-
-// Показати поле для іншого села
-document.addEventListener("DOMContentLoaded", function() {
-  const selectCity = document.getElementById("city");
-  const otherCityWrapper = document.getElementById("other-city-wrapper");
-
-  selectCity.addEventListener("change", function() {
-    if (selectCity.value === "Інше") {
-      // Показуємо поле для іншого села
-      otherCityWrapper.style.display = "block";
-    } else {
-      // Ховаємо поле для іншого села
-      otherCityWrapper.style.display = "none";
     }
   });
 });
