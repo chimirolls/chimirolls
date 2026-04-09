@@ -74,6 +74,17 @@ document.addEventListener("DOMContentLoaded", function() {
     stickCountDisplay.textContent = stickCount;
   });
 
+  // Рахуємо загальну суму
+  const calculateTotal = () => {
+    const itemPrices = [650, 700]; // Приклад цін товарів (замініть на реальні)
+    const totalPrice = itemPrices.reduce((total, price) => total + price, 0);
+
+    // Додавання суми в форму
+    document.getElementById("total-price").textContent = totalPrice + " грн";
+
+    return totalPrice;
+  };
+
   // Обробка відправки форми
   const form = document.getElementById("order-form");
   form.addEventListener("submit", async function(e) {
@@ -101,6 +112,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const sticks = document.getElementById("stick-count").textContent;
     const comment = document.getElementById("comment").value;
 
+    const total = calculateTotal(); // Обчислення суми
+
     // Формуємо повідомлення для Telegram
     const message = `
 🛒 НОВЕ ЗАМОВЛЕННЯ
@@ -110,18 +123,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
 Тип замовлення: ${deliveryForm.style.display === "block" ? "Доставка" : "Самовивіз"}
 
-${deliveryForm.style.display === "block" ? `
-📍 Адреса:
+${deliveryForm.style.display === "block" ? `📍 Адреса:
 Село: ${city}
-Вулиця: ${street}
-` : ""}
+Вулиця: ${street}` : ""}
 
 ⏰ Час: ${time}
 👥 Кількість персон: ${persons}
-🍡 Навчальні палички: ${sticks}
+🍡 Звичайні палички: ${sticks}
+🍡 Навчальні палички: ${stickCount}
 
 💬 Коментар: ${comment || "-"}
-💰 Сума: [Додати суму тут]
+💰 Сума: ${total} грн
 `;
 
     try {
