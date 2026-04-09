@@ -65,9 +65,19 @@
       <input type="tel" id="phone" placeholder="+380XXXXXXXXX" required>
     </div>
 
-    <!-- Доставка -->
-    <h3>Доставка</h3>
+    <!-- Тип замовлення -->
+    <h3>Тип замовлення</h3>
     <div class="form-card">
+      
+      <div>
+        <button type="button" id="delivery-btn" class="btn-type">Доставка</button>
+        <button type="button" id="pickup-btn" class="btn-type">Самовивіз</button>
+      </div>
+    </div>
+
+    <!-- Доставка -->
+    <div id="delivery-form" class="form-card" style="display: none;">
+      
       <label>Село</label>
       <div class="select-wrapper">
         <select id="city">
@@ -98,8 +108,27 @@
           <option value="21:00">21:00</option>
         </select>
       </div>
+    </div>
 
-      <!-- Кількість персон -->
+    <!-- Самовивіз -->
+    <div id="pickup-form" class="form-card" style="display: none;">
+      
+      <label>Бажаний час</label>
+      <div class="select-wrapper">
+        <select id="pickup-time">
+          <option value="">Оберіть час</option>
+          <option value="15:00">15:00</option>
+          <option value="17:00">17:00</option>
+          <option value="19:00">19:00</option>
+          <option value="21:00">21:00</option>
+        </select>
+      </div>
+      <label>Адреса:</label>
+      <h5>с.Соколів Брід вул. Чернухи Віталія 10</h5>
+    </div>
+
+    <!-- Кількість персон -->
+    <div class="form-card">
       <label>Кількість персон</label>
       <div class="counter" id="person-counter">
         <button type="button" class="decrement">-</button>
@@ -124,13 +153,11 @@
 
     <!-- КОНТЕЙНЕР ДЛЯ СУМИ І КНОПКИ -->
     <div class="total-container">
-      <!-- СУМА -->
       <div class="total">
         <span>Сума</span>
         <span id="total-price">0 грн</span>
       </div>
 
-      <!-- КНОПКА -->
       <button type="submit" class="submit-btn">
         Надіслати форму
       </button>

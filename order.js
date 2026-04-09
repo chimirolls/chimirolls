@@ -1,128 +1,153 @@
-document.addEventListener("DOMContentLoaded", async () => {
-  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+document.addEventListener("DOMContentLoaded", function() {
+  // Вибір між доставкою та самовивозом
+  const deliveryBtn = document.getElementById("delivery-btn");
+  const pickupBtn = document.getElementById("pickup-btn");
+  const deliveryForm = document.getElementById("delivery-form");
+  const pickupForm = document.getElementById("pickup-form");
 
-  // 🔥 фікс старого формату
-  favorites = favorites.map(f => {
-    if (typeof f === "string") {
-      return { id: f, type: "rolls", quantity: 1 };
-    }
-    if (!f.type) {
-      return { ...f, type: "rolls" };
-    }
-    return f;
+  // Початково показуємо форму доставки
+  deliveryForm.style.display = "block";
+  pickupForm.style.display = "none"; // Приховуємо форму самовивозу за замовчуванням
+  deliveryBtn.classList.add("active"); // За замовчуванням активна кнопка "Доставка"
+
+  // Обробка вибору кнопки Доставка
+  deliveryBtn.addEventListener("click", function() {
+    deliveryForm.style.display = "block";
+    pickupForm.style.display = "none";
+    deliveryBtn.classList.add("active"); // Додаємо клас active
+    pickupBtn.classList.remove("active"); // Видаляємо клас active з іншої кнопки
   });
 
-  localStorage.setItem("favorites", JSON.stringify(favorites));
-
-  // Тягнемо товари
-  const res = await fetch("data.json");
-  const data = await res.json();
-
-  // Правильний пошук
-  const selectedItems = favorites.map(fav => {
-    let source = [];
-
-    if (fav.type === "rolls") source = data.rolls;
-    if (fav.type === "sets") source = data.sets;
-    if (fav.type === "salats") source = data.salats;
-
-    const item = source.find(i => String(i.id) === String(fav.id));
-
-    if (!item) return null;
-
-    return {
-      ...item,
-      quantity: fav.quantity
-    };
-  }).filter(Boolean);
-
-  let total = 0;
-  let itemsText = "";
-
-  selectedItems.forEach(item => {
-    total += item.price * item.quantity;
-    itemsText += `• ${item.name} x${item.quantity} — ${item.price * item.quantity} грн\n`;
+  // Обробка вибору кнопки Самовивіз
+  pickupBtn.addEventListener("click", function() {
+    deliveryForm.style.display = "none";
+    pickupForm.style.display = "block";
+    pickupBtn.classList.add("active"); // Додаємо клас active
+    deliveryBtn.classList.remove("active"); // Видаляємо клас active з іншої кнопки
   });
 
-  // сума
-  const totalEl = document.getElementById("total-price");
-  if (totalEl) {
-    totalEl.textContent = total + " грн";
-  }
+  // Обробка зміни села для доставки
+  const selectCity = document.getElementById("city");
+  const otherCityWrapper = document.getElementById("other-city-wrapper");
 
-  // submit
+  selectCity.addEventListener("change", function() {
+    if (selectCity.value === "Інше") {
+      otherCityWrapper.style.display = "block";
+    } else {
+      otherCityWrapper.style.display = "none";
+    }
+  });
+
+  // Обробка кнопок кількості персон
+  const decrementPersonButton = document.querySelector("#person-counter .decrement");
+  const incrementPersonButton = document.querySelector("#person-counter .increment");
+  const personCountDisplay = document.getElementById("person-count");
+  let personCount = parseInt(personCountDisplay.textContent);
+
+  decrementPersonButton.addEventListener("click", function() {
+    if (personCount > 1) {
+      personCount--;
+      personCountDisplay.textContent = personCount;
+    }
+  });
+
+  incrementPersonButton.addEventListener("click", function() {
+    personCount++;
+    personCountDisplay.textContent = personCount;
+  });
+
+  // Обробка кнопок кількості навчальних паличок
+  const decrementStickButton = document.querySelector("#stick-counter .decrement");
+  const incrementStickButton = document.querySelector("#stick-counter .increment");
+  const stickCountDisplay = document.getElementById("stick-count");
+  let stickCount = parseInt(stickCountDisplay.textContent);
+
+  decrementStickButton.addEventListener("click", function() {
+    if (stickCount > 0) {
+      stickCount--;
+      stickCountDisplay.textContent = stickCount;
+    }
+  });
+
+  incrementStickButton.addEventListener("click", function() {
+    stickCount++;
+    stickCountDisplay.textContent = stickCount;
+  });
+
+  // Обробка відправки форми
   const form = document.getElementById("order-form");
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
 
-  if (form) {
-    form.addEventListener("submit", async function(e) {
-      e.preventDefault();
+    const loadingModal = document.getElementById("loading-modal");
+    loadingModal.style.display = "flex";
 
-      // Додаємо індикатор завантаження
-      const loadingModal = document.getElementById("loading-modal");
-      loadingModal.style.display = "flex"; // Показуємо модальне вікно
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    let city = "";
+    let street = "";
+    let time = "";
 
-      const name = document.getElementById("name").value;
-      const phone = document.getElementById("phone").value;
-      const city = document.getElementById("city").value;
-      const street = document.getElementById("street").value;
-      const time = document.getElementById("time").value;
+    // В залежності від вибору форми
+    if (deliveryForm.style.display === "block") {
+      city = document.getElementById("city").value;
+      street = document.getElementById("street").value;
+      time = document.getElementById("time").value;
+    } else {
+      time = document.getElementById("pickup-time").value;
+    }
 
-      // Збираємо кількість персон і паличок з лічильників
-      const persons = document.getElementById("person-count").textContent;
-      const sticks = document.getElementById("stick-count").textContent;
+    const persons = document.getElementById("person-count").textContent;
+    const sticks = document.getElementById("stick-count").textContent;
+    const comment = document.getElementById("comment").value;
 
-      const comment = document.getElementById("comment").value;
-
-      const message = `
+    // Формуємо повідомлення для Telegram
+    const message = `
 🛒 НОВЕ ЗАМОВЛЕННЯ
 
 👤 Ім'я: ${name}
 📞 Телефон: ${phone}
 
+Тип замовлення: ${deliveryForm.style.display === "block" ? "Доставка" : "Самовивіз"}
+
+${deliveryForm.style.display === "block" ? `
 📍 Адреса:
-${city}, ${street}
+Село: ${city}
+Вулиця: ${street}
+` : ""}
 
 ⏰ Час: ${time}
-👥 Осіб: ${persons}
-🍡 Паличок: ${sticks}
+👥 Кількість персон: ${persons}
+🍡 Навчальні палички: ${sticks}
 
-🍣 Замовлення:
-${itemsText}
-
-💬 Коментар:
-${comment || "-"}
-
-💰 Сума: ${total} грн
+💬 Коментар: ${comment || "-"}
+💰 Сума: [Додати суму тут]
 `;
 
-      try {
-        const response = await fetch("https://chimi-backend.onrender.com/order", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            message: message
-          })
-        });
+    try {
+      const response = await fetch("https://chimi-backend.onrender.com/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message: message
+        })
+      });
 
-        if (response.ok) {
-          localStorage.removeItem("favorites");
-          window.location.href = "success.html"; // Перехід на сторінку успіху
-        } else {
-          window.location.href = "error.html"; // Перехід на сторінку помилки
-        }
-
-      } catch (err) {
-        console.error(err);
+      if (response.ok) {
+        localStorage.removeItem("favorites");
+        window.location.href = "success.html"; // Перехід на сторінку успіху
+      } else {
         window.location.href = "error.html"; // Перехід на сторінку помилки
-      } finally {
-        // Після завершення відправки закриваємо модальне вікно
-        loadingModal.style.display = "none";
       }
-    });
-  }
-
+    } catch (err) {
+      console.error(err);
+      window.location.href = "error.html"; // Перехід на сторінку помилки
+    } finally {
+      loadingModal.style.display = "none";
+    }
+  });
 });
 
 // Показати поле для іншого села

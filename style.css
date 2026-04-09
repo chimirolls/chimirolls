@@ -326,35 +326,7 @@ body {
   margin-bottom: auto;
 }
 
-/* лічильник вниз */
-.page-favorites .counter {
-  margin-top: auto;
-  display: flex;
-  align-items: center;
-  gap: 8px;
 
-  background: transparent; 
-  border: 2px solid #adaabb; 
-  border-radius: 8px;
-  padding: 4px 10px;
-  
-}
-
-.page-favorites .counter button {
-  background: none;
-  border: none;
-  color: #2A2A2A;
-  font-size: 14px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.page-favorites .count {
-  min-width: 12px;
-  text-align: center;
-  color: #2A2A2A;
-  font-weight: 600;
-}
 
 
 .card-img-wrapper {
@@ -970,7 +942,7 @@ body.no-scroll {
   border: none;
   outline: none;
   background: transparent;
-  border: 2px solid #b9b7c9;
+  border: 2px solid #c9c8d1;
   border-radius: 10px;
   padding: 12px;
   font-size: 14px;
@@ -984,7 +956,7 @@ body.no-scroll {
   border: none;
   outline: none;
   background: transparent;
-  border: 2px solid #b9b7c9;
+  border: 2px solid #c9c8d1;
   border-radius: 10px;
   padding: 12px;
   font-size: 14px;
@@ -1084,7 +1056,7 @@ body.no-scroll {
   border: none;
   outline: none;
   background: transparent;
-  border: 2px solid #b9b7c9;
+  border: 2px solid #c9c8d1;
   border-radius: 10px;
   padding: 12px;
   font-size: 14px;
@@ -1296,15 +1268,14 @@ body.no-scroll {
 
 
 /* Загальний стиль для обох лічильників */
-/* Загальний стиль для обох лічильників */
 .counter {
   margin-top: 8px;
   margin-bottom: 8px;
-  display: inline-flex; /* Використовуємо inline-flex, щоб лічильник займав мінімальний простір */
+  display: inline-flex; 
   align-items: center;
-  gap: 8px; /* Відступ між кнопками і числом */
+  gap: 8px; 
   background: transparent;
-  border: 2px solid #adaabb;
+  border: 2px solid #c9c8d1;
   border-radius: 8px;
   padding: 4px 10px;
 }
@@ -1314,22 +1285,108 @@ body.no-scroll {
   background: none;
   border: none;
   color: #2A2A2A;
-  font-size: 24px; /* Збільшили шрифт для кнопок */
+  font-size: 24px; 
   cursor: pointer;
   font-weight: 200;
-  width: 24px; /* Ширина кнопок */
-  height: 24px; /* Висота кнопок */
+  width: 24px; 
+  height: 24px; 
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%; /* Заокруглені кнопки */
+  border-radius: 50%; 
 }
 
 /* Текст між кнопками */
 .counter .count {
-  min-width: 30px; /* Збільшили ширину числа, щоб воно виглядало компактно */
+  min-width: 30px; 
   text-align: center;
   color: #2A2A2A;
   font-weight: 600;
-  font-size: 14px; /* Розмір числа залишається таким самим */
+  font-size: 14px;
+}
+
+/* лічильник вниз */
+.page-favorites .counter {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  background: transparent; 
+  border: 2px solid #adaabb; 
+  border-radius: 8px;
+  padding: 4px 10px;
+  
+}
+
+.page-favorites .counter button {
+  background: none;
+  border: none;
+  color: #2A2A2A;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.page-favorites .count {
+  min-width: 12px;
+  text-align: center;
+  color: #2A2A2A;
+  font-weight: 600;
+}
+
+
+/* Контейнер для кнопок */
+.form-card div {
+  display: flex;
+}
+
+
+
+/* Стиль для кнопок */
+.btn-type {
+  background-color: transparent;
+  color: #000;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 2px solid #05cfc2;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%; /* Зроблено кнопки на всю ширину контейнера */
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Плавний перехід */
+}
+
+/* Стиль для активної кнопки */
+.btn-type.active {
+  background-color: rgb(5, 187, 175); /* Фон для активної кнопки */
+  color: #F7F4F4; /* Білий текст для активної кнопки */
+  border: none; /* Прибираємо обводку */
+}
+
+/* Стиль для неактивної кнопки */
+.btn-type:not(.active) {
+  border: 0px; /* Обводка тільки для неактивних кнопок */
+  background-color: transparent;
+  color: #1B1A22; /* Чорний текст для неактивної кнопки */
+}
+
+/* Кнопка, що не активна (стиль залишиться таким, як і в неактивному стані) */
+.btn-type:focus {
+  outline: none;
+}
+
+h5 {
+  font-size: 14px;
+  font-weight: 600;
+  padding-top: 4px;  /* Зменшили відступ зверху */
+  padding-bottom: 4px; /* Додано відступ знизу */
+  color: #3C3C3D;
+  margin-top: 4px; /* Зменшено відступ зверху */
+  margin-bottom: 4px; /* Зменшено відступ знизу */
 }
