@@ -1,4 +1,3 @@
-/*test*/
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.getElementById("rolls-container");
 
@@ -364,3 +363,28 @@ function triggerFavAnimation() {
     wave.remove();
   }, 600);
 }
+
+// Знаходимо усі кнопки "like-btn" (кнопки додавання в кошик)
+const likeButtons = document.querySelectorAll('.like-btn');
+
+// Додаємо обробник події для кожної кнопки
+likeButtons.forEach((button) => {
+  button.addEventListener('click', function() {
+    const card = this.closest('.card-img-wrapper'); // Знаходимо картку товару
+    const name = card.querySelector('h3').textContent; // Отримуємо назву товару
+    const price = card.querySelector('.price').textContent; // Отримуємо ціну товару
+    const imgSrc = card.querySelector('.card-img').src; // Отримуємо зображення товару
+
+    // Надсилаємо подію в Google Analytics
+    gtag('event', 'add_to_cart', {
+      'event_category': 'cart',
+      'event_label': name,
+      'value': price.replace('₴', '').trim(), // Збираємо тільки число з ціни
+      'items': [{
+        'name': name,
+        'id': imgSrc, // Використовуємо URL зображення як ID товару (можна змінити на інший унікальний ідентифікатор)
+        'price': price.replace('₴', '').trim()
+      }]
+    });
+  });
+});
