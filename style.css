@@ -21,8 +21,8 @@ body {
 
 /* для обраного (без пошуку) */
 .page-favorites .menu {
-  margin-top: 164px; 
-  padding-bottom: 120px; 
+  margin-top: 154px; 
+  padding-bottom: 180px; 
 }
 
 
@@ -325,9 +325,6 @@ body {
 .page-favorites .like-btn {
   margin-bottom: auto;
 }
-
-
-
 
 .card-img-wrapper {
   aspect-ratio: 16 / 10;
@@ -1318,6 +1315,10 @@ body.no-scroll {
   border-radius: 8px;
   padding: 4px 10px;
   
+}
+
+.page-favorites h2 {
+  font-size: 20px;
 }
 
 .page-favorites .counter button {
