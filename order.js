@@ -74,6 +74,64 @@ document.addEventListener("DOMContentLoaded", async function() {
     stickCountDisplay.textContent = stickCount;
   });
 
+  // Логіка для соєвого соусу
+  const decrementSoySauceButton = document.querySelector("#soy-sauce-counter .decrement");
+  const incrementSoySauceButton = document.querySelector("#soy-sauce-counter .increment");
+  const soySauceCountDisplay = document.getElementById("soy-sauce-count");
+
+  let soySauceCount = parseInt(soySauceCountDisplay.textContent);
+
+  decrementSoySauceButton.addEventListener("click", function() {
+    if (soySauceCount > 0) {
+      soySauceCount--;
+      soySauceCountDisplay.textContent = soySauceCount;
+    }
+  });
+
+  incrementSoySauceButton.addEventListener("click", function() {
+    soySauceCount++;
+    soySauceCountDisplay.textContent = soySauceCount;
+  });
+
+  // Логіка для імбиру
+  const decrementGingerButton = document.querySelector("#ginger-counter .decrement");
+  const incrementGingerButton = document.querySelector("#ginger-counter .increment");
+  const gingerCountDisplay = document.getElementById("ginger-count");
+
+  let gingerCount = parseInt(gingerCountDisplay.textContent);
+
+  decrementGingerButton.addEventListener("click", function() {
+    if (gingerCount > 0) {
+      gingerCount--;
+      gingerCountDisplay.textContent = gingerCount;
+    }
+  });
+
+  incrementGingerButton.addEventListener("click", function() {
+    gingerCount++;
+    gingerCountDisplay.textContent = gingerCount;
+  });
+
+  // Логіка для васабі
+  const decrementWasabiButton = document.querySelector("#wasabi-counter .decrement");
+  const incrementWasabiButton = document.querySelector("#wasabi-counter .increment");
+  const wasabiCountDisplay = document.getElementById("wasabi-count");
+
+  let wasabiCount = parseInt(wasabiCountDisplay.textContent);
+
+  decrementWasabiButton.addEventListener("click", function() {
+    if (wasabiCount > 0) {
+      wasabiCount--;
+      wasabiCountDisplay.textContent = wasabiCount;
+    }
+  });
+
+  incrementWasabiButton.addEventListener("click", function() {
+    wasabiCount++;
+    wasabiCountDisplay.textContent = wasabiCount;
+  });
+
+
   let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
   // 🔥 Фікс старого формату
@@ -152,7 +210,11 @@ document.addEventListener("DOMContentLoaded", async function() {
 
     const persons = document.getElementById("person-count").textContent;
     const sticks = document.getElementById("stick-count").textContent;
+    const soySauce = document.getElementById("soy-sauce-count").textContent;
+    const ginger = document.getElementById("ginger-count").textContent;
+    const wasabi = document.getElementById("wasabi-count").textContent;
     const comment = document.getElementById("comment").value;
+  
 
     // Сума вже обчислюється в функції calculateTotal
     const total = await calculateTotal(); // Беремо значення суми
@@ -170,9 +232,17 @@ ${deliveryForm.style.display === "block" ? `
 Село: ${city}
 Вулиця: ${street}` : ""}
 
+🍣 Замовлення:
+${itemsText}
+
 ⏰ Час: ${time}
 👥 Звичайні персон: ${persons}
 🍡 Навчальні палички: ${sticks}
+
+🍣 Додаткові інгредієнти:
+- Соєвий соус: ${soySauce} порцій
+- Імбир: ${ginger} порцій
+- Васабі: ${wasabi} порцій
 
 💬 Коментар: ${comment || "-"}
 💰 Сума: ${total} грн
@@ -272,4 +342,61 @@ document.addEventListener("DOMContentLoaded", function() {
     stickCount++;
     stickCountDisplay.textContent = stickCount;
   });
+});
+
+// Логіка для соєвого соусу
+const decrementSoySauceButton = document.querySelector("#soy-sauce-counter .decrement");
+const incrementSoySauceButton = document.querySelector("#soy-sauce-counter .increment");
+const soySauceCountDisplay = document.getElementById("soy-sauce-count");
+
+let soySauceCount = parseInt(soySauceCountDisplay.textContent);
+
+decrementSoySauceButton.addEventListener("click", function() {
+  if (soySauceCount > 0) {
+    soySauceCount--;
+    soySauceCountDisplay.textContent = soySauceCount;
+  }
+});
+
+incrementSoySauceButton.addEventListener("click", function() {
+  soySauceCount++;
+  soySauceCountDisplay.textContent = soySauceCount;
+});
+
+// Логіка для імбиру
+const decrementGingerButton = document.querySelector("#ginger-counter .decrement");
+const incrementGingerButton = document.querySelector("#ginger-counter .increment");
+const gingerCountDisplay = document.getElementById("ginger-count");
+
+let gingerCount = parseInt(gingerCountDisplay.textContent);
+
+decrementGingerButton.addEventListener("click", function() {
+  if (gingerCount > 0) {
+    gingerCount--;
+    gingerCountDisplay.textContent = gingerCount;
+  }
+});
+
+incrementGingerButton.addEventListener("click", function() {
+  gingerCount++;
+  gingerCountDisplay.textContent = gingerCount;
+});
+
+// Логіка для васабі
+const decrementWasabiButton = document.querySelector("#wasabi-counter .decrement");
+const incrementWasabiButton = document.querySelector("#wasabi-counter .increment");
+const wasabiCountDisplay = document.getElementById("wasabi-count");
+
+let wasabiCount = parseInt(wasabiCountDisplay.textContent);
+
+decrementWasabiButton.addEventListener("click", function() {
+  if (wasabiCount > 0) {
+    wasabiCount--;
+    wasabiCountDisplay.textContent = wasabiCount;
+  }
+});
+
+incrementWasabiButton.addEventListener("click", function() {
+  wasabiCount++;
+  wasabiCountDisplay.textContent = wasabiCount;
 });

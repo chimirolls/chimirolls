@@ -6,7 +6,12 @@
       "price": 290,
       "weight": "290 г",
       "desc": "Лосось, сир, авокадо, огірок",
-      "img": "product/Rolls/fila_losos.webp"
+      "img": "product/Rolls/fila_losos.webp",
+      "condiments": {
+        "soySauce": 1,
+        "wasabi": 1,
+        "ginger": 1
+      }
     },
     {
       "id": "fila_tuna",
@@ -14,7 +19,12 @@
       "price": 290,
       "weight": "290 г",
       "desc": "Тунець, сир, манго, огірок",
-      "img": "product/Rolls/fila_tuna.webp"
+      "img": "product/Rolls/fila_tuna.webp",
+      "condiments": {
+        "soySauce": 1,
+        "wasabi": 1,
+        "ginger": 1
+      }
     },
     {
       "id": "fila_grebin",
@@ -22,7 +32,12 @@
       "price": 300,
       "weight": "290 г",
       "desc": "Гребінець, сир, японський майонез, огірок, ікра Масага, авокадо",
-      "img": "product/Rolls/fila_grebin.webp"
+      "img": "product/Rolls/fila_grebin.webp",
+      "condiments": {
+        "soySauce": 1,
+        "wasabi": 1,
+        "ginger": 1
+      }
     },
     {
       "id": "fila_vugor",
@@ -30,7 +45,12 @@
       "price": 310,
       "weight": "290 г",
       "desc": "Вугор, сир, огірок, авокадо, кунжут, ікра Масага, соус Унагі",
-      "img": "product/Rolls/fila_vugor.webp"
+      "img": "product/Rolls/fila_vugor.webp",
+      "condiments": {
+        "soySauce": 1,
+        "wasabi": 1,
+        "ginger": 1
+      }
     },
     {
       "id": "fila_shrimp",
@@ -38,7 +58,12 @@
       "price": 290,
       "weight": "290 г",
       "desc": "Креветка, сир, ікра Масага, огірок, манго",
-      "img": "product/Rolls/fila_shrimp.webp"
+      "img": "product/Rolls/fila_shrimp.webp",
+      "condiments": {
+        "soySauce": 1,
+        "wasabi": 1,
+        "ginger": 1
+      }
     },
     {
       "id": "fila_bonito",
@@ -46,7 +71,12 @@
       "price": 270,
       "weight": "280 г",
       "desc": "Смажений лосось, сир, ікра Масага, огірок, авокадо, стружка тунця",
-      "img": "product/Rolls/fila_bonito.webp"
+      "img": "product/Rolls/fila_bonito.webp",
+      "condiments": {
+        "soySauce": 1,
+        "wasabi": 1,
+        "ginger": 1
+      }
     },
     {
       "id": "kali_losos",
@@ -54,7 +84,12 @@
       "price": 250,
       "weight": "270 г",
       "desc": "Лосось, авокадо, огірок, ікра Масага",
-      "img": "product/Rolls/kali_losos.webp"
+      "img": "product/Rolls/kali_losos.webp",
+      "condiments": {
+        "soySauce": 1,
+        "wasabi": 1,
+        "ginger": 1
+      }
     },
     {
       "id": "kali_vugor",
@@ -62,7 +97,12 @@
       "price": 270,
       "weight": "270 г",
       "desc": "Вугор, японський майонез, огірок, авокадо, кунжут",
-      "img": "product/Rolls/kali_vugor.webp"
+      "img": "product/Rolls/kali_vugor.webp",
+      "condiments": {
+        "soySauce": 1,
+        "wasabi": 1,
+        "ginger": 1
+      }
     },
     {
       "id": "kali_shrimp",
@@ -70,7 +110,12 @@
       "price": 250,
       "weight": "270 г",
       "desc": "Креветка, авокадо, огірок, ікра Масага, манго",
-      "img": "product/Rolls/kali_shrimp.webp"
+      "img": "product/Rolls/kali_shrimp.webp",
+      "condiments": {
+        "soySauce": 1,
+        "wasabi": 1,
+        "ginger": 1
+      }
     },
     {
       "id": "kali_tuna",
@@ -78,7 +123,12 @@
       "price": 250,
       "weight": "270 г",
       "desc": "Тунець, авокадо, огірок, манго, японський майонез, кунжут",
-      "img": "product/Rolls/kali_tuna.webp"
+      "img": "product/Rolls/kali_tuna.webp",
+      "condiments": {
+        "soySauce": 1,
+        "wasabi": 1,
+        "ginger": 1
+      }
     },
     {
       "id": "fila_cheder",
@@ -86,7 +136,12 @@
       "price": 240,
       "weight": "280 г",
       "desc": "Мідії, сир, краб, сир Чедер, кунжут",
-      "img": "product/Rolls/fila_cheder.webp"
+      "img": "product/Rolls/fila_cheder.webp",
+      "condiments": {
+        "soySauce": 1,
+        "wasabi": 1,
+        "ginger": 1
+      }
     },
     {
       "id": "futomaki",
@@ -94,55 +149,12 @@
       "price": 380,
       "weight": "370 г",
       "desc": "Лосось, тунець, креветка, вугор, манго",
-      "img": "product/Rolls/futomaki.webp"
-    },
-    {
-      "id": "maki_ququmber",
-      "name": "Макі з огірком",
-      "price": 70,
-      "weight": "100 г",
-      "desc": "Огірок",
-      "img": "product/Maki/maki_ququmber.webp"
-    },
-    {
-      "id": "maki_avokado",
-      "name": "Макі з авокадо",
-      "price": 90,
-      "weight": "100 г",
-      "desc": "Авокадо",
-      "img": "product/Maki/maki_avokado.webp"
-    },
-    {
-      "id": "maki_losos",
-      "name": "Макі з лососем",
-      "price": 110,
-      "weight": "100 г",
-      "desc": "Лосось",
-      "img": "product/Maki/maki_losos.webp"
-    },
-    {
-      "id": "maki_tuna",
-      "name": "Макі з тунцем",
-      "price": 110,
-      "weight": "100 г",
-      "desc": "Тунець",
-      "img": "product/Maki/maki_tuna.webp"
-    },
-    {
-      "id": "maki_shrimp",
-      "name": "Макі креветка",
-      "price": 110,
-      "weight": "100 г",
-      "desc": "Креветка",
-      "img": "product/Maki/maki_shrimp.webp"
-    },
-    {
-      "id": "maki_vugor",
-      "name": "Макі з вугрем",
-      "price": 140,
-      "weight": "100 г",
-      "desc": "Вугор",
-      "img": "product/Maki/maki_vugor.webp"
+      "img": "product/Rolls/futomaki.webp",
+      "condiments": {
+        "soySauce": 1,
+        "wasabi": 1,
+        "ginger": 1
+      }
     }
   ],
   
@@ -153,7 +165,12 @@
       "price": 560,
       "weight": "580 г",
       "desc": "½ Філадельфія з лососем, \n½ Філадельфія з тунецум, \n½ Філадельфія з креветкою, \n½ Філадельфія з вугрем",
-      "img": "product/Sets/set_fujn.webp"
+      "img": "product/Sets/set_fujn.webp",
+      "condiments": {
+        "soySauce": 4,
+        "wasabi": 4,
+        "ginger": 4
+      }
     },
     {
       "id": "set_na_dvoh",
@@ -161,7 +178,12 @@
       "price": 650,
       "weight": "670 г",
       "desc": "Філадельфія з лососем, Філадельфія боніто, макі з вугрем",
-      "img": "product/Sets/set_na_dvoh.webp"
+      "img": "product/Sets/set_na_dvoh.webp",
+      "condiments": {
+        "soySauce": 3,
+        "wasabi": 3,
+        "ginger": 3
+      }
     },
     {
       "id": "set_kali",
@@ -169,7 +191,12 @@
       "price": 950,
       "weight": "1080 г",
       "desc": "Каліфорнія з лососем, Каліфорнія з тунцем, Каліфорнія з вугрем, Каліфорнія з креветкою",
-      "img": "product/Sets/set_kali.webp"
+      "img": "product/Sets/set_kali.webp",
+      "condiments": {
+        "soySauce": 4,
+        "wasabi": 4,
+        "ginger": 4
+      }
     },
     {
       "id": "set_family",
@@ -177,7 +204,12 @@
       "price": 1150,
       "weight": "1240 г",
       "desc": "Філадельфія з лососем, Філадельфія боніто, Філадельфія з креветкою, Чедер, макі з лососем",
-      "img": "product/Sets/set_family.webp"
+      "img": "product/Sets/set_family.webp",
+      "condiments": {
+        "soySauce": 5,
+        "wasabi": 5,
+        "ginger": 5
+      }
     },
     {
       "id": "set_fila",
@@ -185,7 +217,12 @@
       "price": 1400,
       "weight": "1450 г",
       "desc": "Філадельфія з лососем, Філадельфія з тунцем, Філадельфія з креветкою, Філадельфія з вугрем, Філадельфія з гребінцем",
-      "img": "product/Sets/set_fila.webp"
+      "img": "product/Sets/set_fila.webp",
+      "condiments": {
+        "soySauce": 5,
+        "wasabi": 5,
+        "ginger": 5
+      }
     },
     {
       "id": "set_maki",
@@ -193,9 +230,13 @@
       "price": 550,
       "weight": "600 г",
       "desc": "Макі з лососем, Макі з тунцем, Макі з креветкою, Макі з вугрем, Макі з огірком, Макі з авокадо",
-      "img": "product/Sets/set_maki.webp"
+      "img": "product/Sets/set_maki.webp",
+      "condiments": {
+        "soySauce": 6,
+        "wasabi": 6,
+        "ginger": 6
+      }
     }
-
   ],
   "salats": [
     {
@@ -205,5 +246,6 @@
       "weight": "130 г",
       "desc": "Чука (100 г), горіховий соус (30 г)",
       "img": "product/Other/salat_chuka.webp"
-    }]
+    }
+  ]
 }

@@ -296,6 +296,9 @@ function attachCounterHandlers() {
 });
 
 
+
+
+
 /*Хедер фіксується при скролінгу*/
 const header = document.querySelector(".app-header");
 const topBar = document.getElementById("topBar");
@@ -315,6 +318,9 @@ window.addEventListener("scroll", () => {
   lastScroll = current;
 });
 
+
+
+
 /* Кнопка "Очистити"*/
 const clearBtn = document.getElementById("clear-favorites");
 
@@ -332,6 +338,8 @@ if (clearBtn) {
   });
 }
 
+
+
 /*Лічильник обраного*/
 function updateFavCount() {
   const favs = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -347,6 +355,8 @@ function updateFavCount() {
     countEl.style.display = "flex";
   }
 }
+
+
 // виклик при загрузці
 updateFavCount();
 

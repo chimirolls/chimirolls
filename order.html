@@ -111,9 +111,13 @@
         <select id="time">
           <option value="">Оберіть час</option>
           <option value="Найближчий час">Найближчий час</option>
+          <option value="14:00">14:00</option>
           <option value="15:00">15:00</option>
+          <option value="16:00">16:00</option>
           <option value="17:00">17:00</option>
+          <option value="18:00">18:00</option>
           <option value="19:00">19:00</option>
+          <option value="20:00">20:00</option>
           <option value="21:00">21:00</option>
         </select>
       </div>
@@ -126,9 +130,14 @@
       <div class="select-wrapper">
         <select id="pickup-time">
           <option value="">Оберіть час</option>
+          <option value="Найближчий час">Найближчий час</option>
+          <option value="14:00">14:00</option>
           <option value="15:00">15:00</option>
+          <option value="16:00">16:00</option>
           <option value="17:00">17:00</option>
+          <option value="18:00">18:00</option>
           <option value="19:00">19:00</option>
+          <option value="20:00">20:00</option>
           <option value="21:00">21:00</option>
         </select>
       </div>
@@ -154,6 +163,36 @@
         <button type="button" class="increment">+</button>
       </div>
     </div>
+
+    <h3>Додати до замовлення</h3>
+    
+    <div class="form-card">
+      <h4>Кожен рол включає 1 порцію соєвого соусу, 1 порцію васабі та 1 порцію імбиру. Додаткові порції доступні за додаткову плату.</h4>
+      <label>Соєвий соус (10 ₴)</label>
+      <div class="counter" id="soy-sauce-counter">
+        <button type="button" class="decrement">-</button>
+        <span class="count" id="soy-sauce-count">0</span>
+        <button type="button" class="increment">+</button>
+      </div>
+
+      <!-- Навчальні палички -->
+      <label>Імбир (15 ₴)</label>
+      <div class="counter" id="ginger-counter">
+        <button type="button" class="decrement">-</button>
+        <span class="count" id="ginger-count">0</span>
+        <button type="button" class="increment">+</button>
+      </div>
+
+       <label>Васабі (5 ₴)</label>
+      <div class="counter" id="wasabi-counter">
+        <button type="button" class="decrement">-</button>
+        <span class="count" id="wasabi-count">0</span>
+        <button type="button" class="increment">+</button>
+      </div>
+    </div>
+
+   
+    
 
     <!-- Коментар -->
     <h3>Коментар (за бажанням)</h3>

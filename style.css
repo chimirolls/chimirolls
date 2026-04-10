@@ -25,7 +25,6 @@ body {
   padding-bottom: 180px; 
 }
 
-
 /* контейнер */
 .app-header {
   position: fixed;
@@ -930,7 +929,7 @@ body.no-scroll {
   margin-bottom: 16px; /* Збільшили відступ між картками */
   color: #3C3C3D;
 }
-
+ 
 /* інпути та textarea */
 .form-card input,
 .form-card textarea,
@@ -1390,4 +1389,107 @@ h5 {
   color: #3C3C3D;
   margin-top: 4px; /* Зменшено відступ зверху */
   margin-bottom: 4px; /* Зменшено відступ знизу */
+}
+
+/* Стили для карток спецій */
+.condiment-card {
+  display: flex;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  background: #F7F4F4;
+  box-shadow: 2px 4px 10px #514D5E;
+  position: relative;
+  min-height: 110px;
+  
+}
+
+/* Фото спеції */
+.condiment-card .condiment-img {
+  width: 120px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+/* Головний контент справа */
+.condiment-card .card-small-content {
+  flex: 1;
+  padding: 12px;
+  background: #F7F4F4;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 10px;
+  min-height: 110px;
+  min-width: 0;
+}
+
+/* Назва спеції */
+.condiment-card .condiment-name {
+  flex: 1;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2A2A2A;
+  line-height: 1.2;
+}
+
+
+/* Додаткові стилі для ціни */
+.condiment-card .price {
+  margin-top: auto;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2A2A2A;
+}
+
+.condiment-card .weight {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 4px;
+}
+
+.condiment-card .condiment-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.condiment-card .counter {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  background: transparent; 
+  border: 2px solid #adaabb; 
+  border-radius: 8px;
+  padding: 4px 10px;
+  
+}
+
+.condiment-card .counter button {
+  background: none;
+  border: none;
+  color: #2A2A2A;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.condiment-card .count {
+  min-width: 12px;
+  text-align: center;
+  color: #2A2A2A;
+  font-weight: 600;
+}
+
+.condiment-card .actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
 }
