@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     pickupBtn.classList.remove("active"); // Видаляємо клас active з іншої кнопки
   });
 
-  // Обробка вибору кнопки Самовивіз
+  // Обробка вибору кнопки Самовивіз 
   pickupBtn.addEventListener("click", function() {
     deliveryForm.style.display = "none";
     pickupForm.style.display = "block";
@@ -236,7 +236,7 @@ ${deliveryForm.style.display === "block" ? `
 ${itemsText}
 
 ⏰ Час: ${time}
-👥 Звичайні персон: ${persons}
+👥 Звичайні палички: ${persons}
 🍡 Навчальні палички: ${sticks}
 
 🍣 Додаткові інгредієнти:
