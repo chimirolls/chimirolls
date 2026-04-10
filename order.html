@@ -147,48 +147,57 @@
 
     <!-- Кількість персон -->
     <h3>Прибори</h3>
-    <div class="form-card">
-      <label>Звичайні палички</label>
-      <div class="counter" id="person-counter">
-        <button type="button" class="decrement">-</button>
-        <span class="count" id="person-count">1</span>
-        <button type="button" class="increment">+</button>
+    <div class="form-card-sticks">
+      <div class="form-card-counter">
+        <label>Звичайні палички</label>
+        <div class="counter" id="person-counter">
+          <button class="decrement">-</button>
+          <span class="count" id="person-count">0</span>
+          <button class="increment">+</button>
+        </div>
       </div>
+      
 
       <!-- Навчальні палички -->
-      <label>Навчальні палички</label>
-      <div class="counter" id="stick-counter">
-        <button type="button" class="decrement">-</button>
-        <span class="count" id="stick-count">0</span>
-        <button type="button" class="increment">+</button>
-      </div>
+      <div class="form-card-counter">
+        <label>Навчальні палички</label>
+        <div class="counter" id="stick-counter">
+          <button type="button" class="decrement">-</button>
+          <span class="count" id="stick-count">0</span>
+          <button type="button" class="increment">+</button>
+        </div>
+     </div> 
     </div>
 
     <h3>Додати до замовлення</h3>
     
-    <div class="form-card">
-      <h4>Кожен рол включає 1 порцію соєвого соусу, 1 порцію васабі та 1 порцію імбиру. Додаткові порції доступні за додаткову плату.</h4>
+    <div class="form-card-sticks">
+      <h4>Кожен рол включає 1 порцію соєвого соусу, 1 порцію васабі та 1 порцію імбиру.<br>Додаткові порції доступні за додаткову плату.</h4>
+      <div class="form-card-counter">
       <label>Соєвий соус (10 ₴)</label>
       <div class="counter" id="soy-sauce-counter">
         <button type="button" class="decrement">-</button>
         <span class="count" id="soy-sauce-count">0</span>
         <button type="button" class="increment">+</button>
       </div>
+      </div>
 
       <!-- Навчальні палички -->
+       <div class="form-card-counter">
       <label>Імбир (15 ₴)</label>
       <div class="counter" id="ginger-counter">
         <button type="button" class="decrement">-</button>
         <span class="count" id="ginger-count">0</span>
         <button type="button" class="increment">+</button>
-      </div>
+      </div></div>
 
-       <label>Васабі (5 ₴)</label>
+      <div class="form-card-counter">
+      <label>Васабі (5 ₴)</label>
       <div class="counter" id="wasabi-counter">
         <button type="button" class="decrement">-</button>
         <span class="count" id="wasabi-count">0</span>
         <button type="button" class="increment">+</button>
-      </div>
+      </div></div>
     </div>
 
    

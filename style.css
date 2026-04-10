@@ -928,6 +928,32 @@ body.no-scroll {
   padding: 14px;
   margin-bottom: 16px; /* Збільшили відступ між картками */
   color: #3C3C3D;
+  
+  flex-direction: column;
+  gap: 12px;
+  
+}
+/* картки форми */
+.form-card-sticks {
+  display: flex;
+  flex-direction: column; /* Вертикальне вирівнювання елементів */
+  gap: 10px;
+  background: #F7F4F4;
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 16px; /* Збільшили відступ між картками */
+  color: #3C3C3D;
+  
+  flex-direction: column;
+  gap: 12px;
+  
+}
+
+.form-card-counter {
+  display: flex;
+  justify-content: space-between;
+   
+  align-items: center;
 }
  
 /* інпути та textarea */
@@ -1265,8 +1291,8 @@ body.no-scroll {
 
 /* Загальний стиль для обох лічильників */
 .page-order .counter {
-  margin-top: 8px;
-  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between; /* Розподілить простір між елементами */
   display: inline-flex; 
   align-items: center;
   gap: 8px; 
@@ -1300,6 +1326,15 @@ body.no-scroll {
   color: #2A2A2A;
   font-weight: 600;
   font-size: 14px;
+}
+
+.page-order h4 {
+  font-size: 14px;
+  font-weight: 600;
+  
+  color: #3C3C3D;
+  margin-top: 2px; /* Зменшено відступ зверху */
+  margin-bottom: 12px; /* Зменшено відступ знизу */
 }
 
 /* лічильник вниз */
@@ -1390,6 +1425,8 @@ h5 {
   margin-top: 4px; /* Зменшено відступ зверху */
   margin-bottom: 4px; /* Зменшено відступ знизу */
 }
+
+
 
 /* Стили для карток спецій */
 .condiment-card {
