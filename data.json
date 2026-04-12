@@ -155,6 +155,54 @@
         "wasabi": 1,
         "ginger": 1
       }
+    },
+    {
+      "id": "maki_ququmber",
+      "name": "Макі з огірком",
+      "price": 70,
+      "weight": "100 г",
+      "desc": "Огірок",
+      "img": "product/Maki/maki_ququmber.webp"
+    },
+    {
+      "id": "maki_avokado",
+      "name": "Макі з авокадо",
+      "price": 90,
+      "weight": "100 г",
+      "desc": "Авокадо",
+      "img": "product/Maki/maki_avokado.webp"
+    },
+    {
+      "id": "maki_losos",
+      "name": "Макі з лососем",
+      "price": 110,
+      "weight": "100 г",
+      "desc": "Лосось",
+      "img": "product/Maki/maki_losos.webp"
+    },
+    {
+      "id": "maki_tuna",
+      "name": "Макі з тунцем",
+      "price": 110,
+      "weight": "100 г",
+      "desc": "Тунець",
+      "img": "product/Maki/maki_tuna.webp"
+    },
+    {
+      "id": "maki_shrimp",
+      "name": "Макі креветка",
+      "price": 110,
+      "weight": "100 г",
+      "desc": "Креветка",
+      "img": "product/Maki/maki_shrimp.webp"
+    },
+    {
+      "id": "maki_vugor",
+      "name": "Макі з вугрем",
+      "price": 140,
+      "weight": "100 г",
+      "desc": "Вугор",
+      "img": "product/Maki/maki_vugor.webp"
     }
   ],
   
