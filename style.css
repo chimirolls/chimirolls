@@ -1531,6 +1531,15 @@ h5 {
   align-items: flex-end;
 }
 
+#pickup-custom-time,
+#custom-time {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0; /* 🔥 ключове */
+  box-sizing: border-box;
+  display: block;
+}
+
 #custom-time-wrapper,
 #pickup-custom-time-wrapper {
   display: block;
