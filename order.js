@@ -43,16 +43,29 @@ document.addEventListener("DOMContentLoaded", async function() {
 });
 
 // Обробка зміни часу для доставки
-  function setupCustomTime(selectId, wrapperId, inputId) {
+  // Перевірка часу: тільки формат 18:30 і межі 14:00–21:00
+function isValidTime(time) {
+  const match = time.match(/^(\d{1,2}):(\d{2})$/);
+  if (!match) return false;
+
+  const hours = parseInt(match[1], 10);
+  const minutes = parseInt(match[2], 10);
+
+  if (hours < 0 || hours > 23) return false;
+  if (minutes < 0 || minutes > 59) return false;
+
+  const totalMinutes = hours * 60 + minutes;
+
+  return totalMinutes >= 14 * 60 && totalMinutes <= 21 * 60;
+}
+
+// Показує / ховає поле "Свій час"
+function setupCustomTime(selectId, wrapperId, inputId) {
   const select = document.getElementById(selectId);
   const wrapper = document.getElementById(wrapperId);
   const input = document.getElementById(inputId);
 
   if (!select || !wrapper || !input) return;
-
-  function isValidTime(time) {
-    return time >= "14:00" && time <= "21:00";
-  }
 
   select.addEventListener("change", () => {
     const isCustom = select.value === "Свій час";
@@ -63,21 +76,43 @@ document.addEventListener("DOMContentLoaded", async function() {
       input.value = "";
     }
   });
+}
 
-  // 🔥 перевірка при зміні часу
-  input.addEventListener("change", () => {
+// Форматує введення і перевіряє час
+function setupTimeValidation(inputId) {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+
+  input.addEventListener("input", () => {
+    let value = input.value.replace(/[^\d]/g, "");
+
+    if (value.length > 4) {
+      value = value.slice(0, 4);
+    }
+
+    if (value.length >= 3) {
+      value = value.slice(0, 2) + ":" + value.slice(2);
+    }
+
+    input.value = value;
+  });
+
+  input.addEventListener("blur", () => {
     if (!input.value) return;
 
     if (!isValidTime(input.value)) {
-      alert("Оберіть час з 14:00 до 21:00");
+      alert("Введіть час у форматі 18:30 (з 14:00 до 21:00)");
       input.value = "";
     }
   });
 }
 
-// ініціалізація
+// Ініціалізація
 setupCustomTime("time", "custom-time-wrapper", "custom-time");
 setupCustomTime("pickup-time", "pickup-custom-time-wrapper", "pickup-custom-time");
+
+setupTimeValidation("custom-time");
+setupTimeValidation("pickup-custom-time");
 
   // Обробка кнопок кількості персон
   const decrementPersonButton = document.querySelector("#person-counter .decrement");
