@@ -1530,3 +1530,22 @@ h5 {
   justify-content: space-between;
   align-items: flex-end;
 }
+
+#custom-time-wrapper,
+#pickup-custom-time-wrapper {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+}
+
+#custom-time-wrapper label,
+#pickup-custom-time-wrapper label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+#custom-time-wrapper input,
+#pickup-custom-time-wrapper input {
+  width: 100%;
+  box-sizing: border-box;
+}

@@ -59,7 +59,7 @@
   <div id="loading-modal" class="loading-modal" style="display: none;">
     <div class="loading-content">
       <div class="loading-spinner"></div>
-      <p class="loading-text">Зачекайте, ваше замовлення відправляється...</p>
+      <p class="loading-text">Обробляємо ваше замовлення…</p>
     </div>
   </div>
 
@@ -92,9 +92,9 @@
         <select id="city">
           <option value="">Оберіть село</option>
           <option value="Соколів Брід">Соколів Брід</option>
-          <option value="Паволоч">Паволоч</option>
-          <option value="Миньківці">Миньківці</option>
-          <option value="Кривошиїнці">Кривошиїнці</option>
+          <option value="Паволоч">Паволоч + 150₴</option>
+          <option value="Миньківці">Миньківці + 250₴</option>
+          <option value="Кривошиїнці">Кривошиїнці + 350₴</option>
           <option value="Інше">Інше</option>
         </select>
       </div>
@@ -111,6 +111,7 @@
         <select id="time">
           <option value="">Оберіть час</option>
           <option value="Найближчий час">Найближчий час</option>
+          <option value="Свій час">Свій час</option>
           <option value="14:00">14:00</option>
           <option value="15:00">15:00</option>
           <option value="16:00">16:00</option>
@@ -120,7 +121,12 @@
           <option value="20:00">20:00</option>
           <option value="21:00">21:00</option>
         </select>
+          
       </div>
+      <div id="custom-time-wrapper" style="display: none;">
+            <label for="custom-time">Введіть свій час</label>
+            <input type="time" id="custom-time">
+          </div>
     </div>
 
     <!-- Самовивіз -->
@@ -131,6 +137,7 @@
         <select id="pickup-time">
           <option value="">Оберіть час</option>
           <option value="Найближчий час">Найближчий час</option>
+          <option value="Свій час">Свій час</option>
           <option value="14:00">14:00</option>
           <option value="15:00">15:00</option>
           <option value="16:00">16:00</option>
@@ -140,7 +147,12 @@
           <option value="20:00">20:00</option>
           <option value="21:00">21:00</option>
         </select>
+        
       </div>
+      <div id="pickup-custom-time-wrapper" style="display: none;">
+          <label for="pickup-custom-time">Введіть свій час</label>
+          <input type="time" id="pickup-custom-time">
+        </div>
       <label>Адреса:</label>
       <h5>с.Соколів Брід вул. Віталія Чернухи 10</h5>
     </div>

@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     pickupForm.style.display = "none";
     deliveryBtn.classList.add("active"); // Додаємо клас active
     pickupBtn.classList.remove("active"); // Видаляємо клас active з іншої кнопки
+    updateTotalWithDelivery();
   });
 
   // Обробка вибору кнопки Самовивіз 
@@ -24,6 +25,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     pickupForm.style.display = "block";
     pickupBtn.classList.add("active"); // Додаємо клас active
     deliveryBtn.classList.remove("active"); // Видаляємо клас active з іншої кнопки
+    updateTotalWithDelivery();
   });
 
   // Обробка зміни села для доставки
@@ -31,12 +33,51 @@ document.addEventListener("DOMContentLoaded", async function() {
   const otherCityWrapper = document.getElementById("other-city-wrapper");
 
   selectCity.addEventListener("change", function() {
-    if (selectCity.value === "Інше") {
-      otherCityWrapper.style.display = "block";
-    } else {
-      otherCityWrapper.style.display = "none";
+  if (selectCity.value === "Інше") {
+    otherCityWrapper.style.display = "block";
+  } else {
+    otherCityWrapper.style.display = "none";
+  }
+
+  updateTotalWithDelivery();
+});
+
+// Обробка зміни часу для доставки
+  function setupCustomTime(selectId, wrapperId, inputId) {
+  const select = document.getElementById(selectId);
+  const wrapper = document.getElementById(wrapperId);
+  const input = document.getElementById(inputId);
+
+  if (!select || !wrapper || !input) return;
+
+  function isValidTime(time) {
+    return time >= "14:00" && time <= "21:00";
+  }
+
+  select.addEventListener("change", () => {
+    const isCustom = select.value === "Свій час";
+
+    wrapper.style.display = isCustom ? "block" : "none";
+
+    if (!isCustom) {
+      input.value = "";
     }
   });
+
+  // 🔥 перевірка при зміні часу
+  input.addEventListener("change", () => {
+    if (!input.value) return;
+
+    if (!isValidTime(input.value)) {
+      alert("Оберіть час з 14:00 до 21:00");
+      input.value = "";
+    }
+  });
+}
+
+// ініціалізація
+setupCustomTime("time", "custom-time-wrapper", "custom-time");
+setupCustomTime("pickup-time", "pickup-custom-time-wrapper", "pickup-custom-time");
 
   // Обробка кнопок кількості персон
   const decrementPersonButton = document.querySelector("#person-counter .decrement");
@@ -45,7 +86,7 @@ document.addEventListener("DOMContentLoaded", async function() {
   let personCount = parseInt(personCountDisplay.textContent);
 
   decrementPersonButton.addEventListener("click", function() {
-    if (personCount > 1) {
+    if (personCount > 0) {
       personCount--;
       personCountDisplay.textContent = personCount;
     }
@@ -85,12 +126,14 @@ document.addEventListener("DOMContentLoaded", async function() {
     if (soySauceCount > 0) {
       soySauceCount--;
       soySauceCountDisplay.textContent = soySauceCount;
+      updateTotalWithDelivery();
     }
   });
 
   incrementSoySauceButton.addEventListener("click", function() {
     soySauceCount++;
     soySauceCountDisplay.textContent = soySauceCount;
+    updateTotalWithDelivery();
   });
 
   // Логіка для імбиру
@@ -104,12 +147,14 @@ document.addEventListener("DOMContentLoaded", async function() {
     if (gingerCount > 0) {
       gingerCount--;
       gingerCountDisplay.textContent = gingerCount;
+      updateTotalWithDelivery();
     }
   });
 
   incrementGingerButton.addEventListener("click", function() {
     gingerCount++;
     gingerCountDisplay.textContent = gingerCount;
+    updateTotalWithDelivery();
   });
 
   // Логіка для васабі
@@ -123,12 +168,14 @@ document.addEventListener("DOMContentLoaded", async function() {
     if (wasabiCount > 0) {
       wasabiCount--;
       wasabiCountDisplay.textContent = wasabiCount;
+      updateTotalWithDelivery();
     }
   });
 
   incrementWasabiButton.addEventListener("click", function() {
     wasabiCount++;
     wasabiCountDisplay.textContent = wasabiCount;
+    updateTotalWithDelivery();
   });
 
 
@@ -150,6 +197,11 @@ document.addEventListener("DOMContentLoaded", async function() {
   // Тягнемо товари
   const res = await fetch("data.json");
   const data = await res.json();
+
+  const deliveryPrices = data.deliveryPrices || {};
+  let currentDeliveryPrice = 0;
+
+  const extraPrices = data.extraPrices || {};
 
   // Правильний пошук
   const selectedItems = favorites.map(fav => {
@@ -178,9 +230,34 @@ document.addEventListener("DOMContentLoaded", async function() {
 
   // Сума
   const totalEl = document.getElementById("total-price");
-  if (totalEl) {
-    totalEl.textContent = total + " грн";
+
+function updateTotalWithDelivery() {
+  if (deliveryForm.style.display === "block") {
+    const selectedCity = document.getElementById("city").value;
+    currentDeliveryPrice = deliveryPrices[selectedCity] || 0;
+  } else {
+    currentDeliveryPrice = 0;
   }
+
+  const soySauceCount = Number(document.getElementById("soy-sauce-count").textContent) || 0;
+  const gingerCount = Number(document.getElementById("ginger-count").textContent) || 0;
+  const wasabiCount = Number(document.getElementById("wasabi-count").textContent) || 0;
+
+  const extrasTotal =
+    soySauceCount * (extraPrices.soySauce || 0) +
+    gingerCount * (extraPrices.ginger || 0) +
+    wasabiCount * (extraPrices.wasabi || 0);
+
+  const finalTotal = total + currentDeliveryPrice + extrasTotal;
+
+  if (totalEl) {
+    totalEl.textContent = finalTotal + " грн";
+  }
+
+  return finalTotal;
+}
+
+updateTotalWithDelivery();
 
   // Обробка відправки форми
   const form = document.getElementById("order-form");
@@ -204,8 +281,16 @@ document.addEventListener("DOMContentLoaded", async function() {
       }
       street = document.getElementById("street").value;
       time = document.getElementById("time").value;
+
+      if (time === "Свій час") {
+        time = document.getElementById("custom-time").value;
+      }
     } else {
       time = document.getElementById("pickup-time").value;
+
+      if (time === "Свій час") {
+        time = document.getElementById("pickup-custom-time").value;
+      }
     }
 
     const persons = document.getElementById("person-count").textContent;
@@ -217,7 +302,7 @@ document.addEventListener("DOMContentLoaded", async function() {
   
 
     // Сума вже обчислюється в функції calculateTotal
-    const total = await calculateTotal(); // Беремо значення суми
+    const total = updateTotalWithDelivery(); // Беремо значення суми
 
     const message = `
 🛒 НОВЕ ЗАМОВЛЕННЯ
@@ -245,6 +330,7 @@ ${itemsText}
 - Васабі: ${wasabi} порцій
 
 💬 Коментар: ${comment || "-"}
+🚚 Доставка: ${currentDeliveryPrice} грн
 💰 Сума: ${total} грн
 `;
 
@@ -303,100 +389,3 @@ async function calculateTotal() {
 
   return total;
 }
-
-// Кількість персон
-document.addEventListener("DOMContentLoaded", function() {
-  const decrementPersonButton = document.querySelector("#person-counter .decrement");
-  const incrementPersonButton = document.querySelector("#person-counter .increment");
-  const personCountDisplay = document.getElementById("person-count");
-  
-  let personCount = parseInt(personCountDisplay.textContent);
-
-  decrementPersonButton.addEventListener("click", function() {
-    if (personCount > 1) {
-      personCount--;
-      personCountDisplay.textContent = personCount;
-    }
-  });
-
-  incrementPersonButton.addEventListener("click", function() {
-    personCount++;
-    personCountDisplay.textContent = personCount;
-  });
-
-  // Навчальні палички
-  const decrementStickButton = document.querySelector("#stick-counter .decrement");
-  const incrementStickButton = document.querySelector("#stick-counter .increment");
-  const stickCountDisplay = document.getElementById("stick-count");
-  
-  let stickCount = parseInt(stickCountDisplay.textContent);
-
-  decrementStickButton.addEventListener("click", function() {
-    if (stickCount > 0) {
-      stickCount--;
-      stickCountDisplay.textContent = stickCount;
-    }
-  });
-
-  incrementStickButton.addEventListener("click", function() {
-    stickCount++;
-    stickCountDisplay.textContent = stickCount;
-  });
-});
-
-// Логіка для соєвого соусу
-const decrementSoySauceButton = document.querySelector("#soy-sauce-counter .decrement");
-const incrementSoySauceButton = document.querySelector("#soy-sauce-counter .increment");
-const soySauceCountDisplay = document.getElementById("soy-sauce-count");
-
-let soySauceCount = parseInt(soySauceCountDisplay.textContent);
-
-decrementSoySauceButton.addEventListener("click", function() {
-  if (soySauceCount > 0) {
-    soySauceCount--;
-    soySauceCountDisplay.textContent = soySauceCount;
-  }
-});
-
-incrementSoySauceButton.addEventListener("click", function() {
-  soySauceCount++;
-  soySauceCountDisplay.textContent = soySauceCount;
-});
-
-// Логіка для імбиру
-const decrementGingerButton = document.querySelector("#ginger-counter .decrement");
-const incrementGingerButton = document.querySelector("#ginger-counter .increment");
-const gingerCountDisplay = document.getElementById("ginger-count");
-
-let gingerCount = parseInt(gingerCountDisplay.textContent);
-
-decrementGingerButton.addEventListener("click", function() {
-  if (gingerCount > 0) {
-    gingerCount--;
-    gingerCountDisplay.textContent = gingerCount;
-  }
-});
-
-incrementGingerButton.addEventListener("click", function() {
-  gingerCount++;
-  gingerCountDisplay.textContent = gingerCount;
-});
-
-// Логіка для васабі
-const decrementWasabiButton = document.querySelector("#wasabi-counter .decrement");
-const incrementWasabiButton = document.querySelector("#wasabi-counter .increment");
-const wasabiCountDisplay = document.getElementById("wasabi-count");
-
-let wasabiCount = parseInt(wasabiCountDisplay.textContent);
-
-decrementWasabiButton.addEventListener("click", function() {
-  if (wasabiCount > 0) {
-    wasabiCount--;
-    wasabiCountDisplay.textContent = wasabiCount;
-  }
-});
-
-incrementWasabiButton.addEventListener("click", function() {
-  wasabiCount++;
-  wasabiCountDisplay.textContent = wasabiCount;
-});
