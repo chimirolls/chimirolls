@@ -1548,4 +1548,5 @@ h5 {
 #pickup-custom-time-wrapper input {
   width: 100%;
   box-sizing: border-box;
+  max-width: 100%;
 }
